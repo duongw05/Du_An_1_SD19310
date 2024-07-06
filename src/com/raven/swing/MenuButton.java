@@ -53,7 +53,7 @@ public class MenuButton extends JButton {
 
     private void init() {
         setContentAreaFilled(false);
-        setForeground(new Color(255, 255, 255));
+        setForeground(new Color(0,0,0));
         setHorizontalAlignment(JButton.LEFT);
         addMouseListener(new MouseAdapter() {
             @Override

@@ -2,12 +2,11 @@ package com.raven.form;
 
 import com.raven.dialog.Message;
 import com.raven.main.Main;
-import com.raven.model.ModelCard;
-import com.raven.model.ModelStudent;
+
 import com.raven.swing.icon.GoogleMaterialDesignIcons;
 import com.raven.swing.icon.IconFontSwing;
 import com.raven.swing.noticeboard.ModelNoticeBoard;
-import com.raven.swing.table.EventAction;
+
 import java.awt.Color;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -17,45 +16,13 @@ public class BanHangForm extends javax.swing.JPanel {
     public BanHangForm() {
         initComponents();
         setOpaque(false);
-        initData();
+        
     }
 
-    private void initData() {
-        initCardData();
-        initNoticeBoard();
-        initTableData();
-    }
 
-    private void initTableData() {
-        EventAction eventAction = new EventAction() {
-            @Override
-            public void delete(ModelStudent student) {
-                if (showMessage("Delete Student : " + student.getName())) {
-                    System.out.println("User click OK");
-                } else {
-                    System.out.println("User click Cancel");
-                }
-            }
 
-            @Override
-            public void update(ModelStudent student) {
-                if (showMessage("Update Student : " + student.getName())) {
-                    System.out.println("User click OK");
-                } else {
-                    System.out.println("User click Cancel");
-                }
-            }
-        };
-       
-    }
 
-    private void initCardData() {
-   
-    }
 
-    private void initNoticeBoard() {
-    
-    }
 
     private boolean showMessage(String message) {
         Message obj = new Message(Main.getFrames()[0], true);
