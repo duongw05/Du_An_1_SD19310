@@ -52,15 +52,15 @@ public class Menu extends javax.swing.JPanel {
     }
 
     public void initMenuItem() {
-        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/Product/icon/banhang.png")), "Bán Hàng"));
-        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/Product/icon/sanpham.png")), "Sản Phẩm"));
-        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/Product/icon/hoadon.png")), "Hóa Đơn"));
-        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/Product/icon/giamgia.png")), "Phiếu giảm giá"));
-        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/Product/icon/khachhang.png")), "Khách Hàng"));
-        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/Product/icon/thongke.png")), "Thống Kê"));
-        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/Product/icon/nhanvien.png")), "Nhân Viên"));
-        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/Product/icon/account.png")), "Đổi mật khẩu"));
-        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/Product/icon/dangxuat.png")), "Đăng Xuất"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/Product/icon/banhang1.png")), "Bán Hàng"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/Product/icon/sanpham1.png")), "Sản Phẩm"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/Product/icon/hoadon1.png")), "Hóa Đơn"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/Product/icon/giamgia1.png")), "Phiếu giảm giá"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/Product/icon/khachhang1.png")), "Khách Hàng"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/Product/icon/thongke1.png")), "Thống Kê"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/Product/icon/nhanvien1.png")), "Nhân Viên"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/Product/icon/doimatkhau.png")), "Đổi mật khẩu"));
+        addMenu(new ModelMenu(new ImageIcon(getClass().getResource("/com/Product/icon/dangxuat1.png")), "Đăng Xuất"));
     }
 
 
@@ -146,7 +146,7 @@ public class Menu extends javax.swing.JPanel {
     protected void paintComponent(Graphics grphcs) {
         Graphics2D g2 = (Graphics2D) grphcs;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        GradientPaint g = new GradientPaint(0, 0, Color.decode("#56CCF2"), 0, getHeight(), Color.decode("#2F80ED"));
+        GradientPaint g = new GradientPaint(0, 0, Color.decode("#A43931"), 0, getHeight(), Color.decode("#1D4350"));
         g2.setPaint(g);
         g2.fillRect(0, 0, getWidth(), getHeight());
         super.paintComponent(grphcs);
