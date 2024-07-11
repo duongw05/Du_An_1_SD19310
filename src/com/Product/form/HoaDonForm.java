@@ -207,7 +207,7 @@ public class HoaDonForm extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel4.setText("Trạng thái hóa đơn");
 
-        combobox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Đã Thanh Toán", "Chờ Thanh Toán", "Chưa Thanh Toán" }));
+        combobox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tất Cả", "Đã Thanh Toán", "Chờ Thanh Toán", "Chưa Thanh Toán" }));
         combobox1.setLineColor(new java.awt.Color(51, 51, 255));
         combobox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -215,7 +215,7 @@ public class HoaDonForm extends javax.swing.JPanel {
             }
         });
 
-        combobox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tiền Mặt", "Chuyển Khoản", " " }));
+        combobox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tất Cả", "Tiền Mặt", "Chuyển Khoản", " " }));
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel8.setText("Tìm theo giá");
