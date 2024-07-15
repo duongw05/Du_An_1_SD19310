@@ -31,26 +31,54 @@ public class Test extends javax.swing.JFrame {
     private void initComponents() {
 
         radioButtonCustom5 = new com.Product.GUI.radio_button.RadioButtonCustom();
+        radioButtonCustom1 = new com.Product.GUI.radio_button.RadioButtonCustom();
+        radioButtonCustom2 = new com.Product.GUI.radio_button.RadioButtonCustom();
+        radioButtonCustom3 = new com.Product.GUI.radio_button.RadioButtonCustom();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         radioButtonCustom5.setText("radioButtonCustom5");
+
+        radioButtonCustom1.setBackground(new java.awt.Color(255, 255, 255));
+        radioButtonCustom1.setText("radioButtonCustom1");
+
+        radioButtonCustom2.setBackground(new java.awt.Color(0, 204, 204));
+        radioButtonCustom2.setText("radioButtonCustom2");
+
+        radioButtonCustom3.setText("radioButtonCustom3");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(300, 300, 300)
-                .addComponent(radioButtonCustom5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(300, 300, 300)
+                        .addComponent(radioButtonCustom5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(168, 168, 168)
+                        .addComponent(radioButtonCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(radioButtonCustom2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addComponent(radioButtonCustom3, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(314, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(111, 111, 111)
+                .addGap(72, 72, 72)
+                .addComponent(radioButtonCustom2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(radioButtonCustom5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(396, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(radioButtonCustom3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(radioButtonCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(278, Short.MAX_VALUE))
         );
 
         pack();
@@ -93,6 +121,9 @@ public class Test extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.Product.GUI.radio_button.RadioButtonCustom radioButtonCustom1;
+    private com.Product.GUI.radio_button.RadioButtonCustom radioButtonCustom2;
+    private com.Product.GUI.radio_button.RadioButtonCustom radioButtonCustom3;
     private com.Product.GUI.radio_button.RadioButtonCustom radioButtonCustom5;
     // End of variables declaration//GEN-END:variables
 }

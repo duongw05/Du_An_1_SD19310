@@ -1,4 +1,4 @@
-package checkbox;
+package com.Product.GUI.checkbox;
 
 import java.awt.Color;
 import java.awt.Cursor;

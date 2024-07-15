@@ -34,6 +34,7 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
         init();
+        setTitle("Phần mềm bán áo phông Sunshine");
     }
 
     private void init() {
@@ -137,7 +138,7 @@ public class Main extends javax.swing.JFrame {
         bg.setLayout(bgLayout);
         bgLayout.setHorizontalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1366, Short.MAX_VALUE)
+            .addGap(0, 1416, Short.MAX_VALUE)
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

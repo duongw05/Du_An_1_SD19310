@@ -25,7 +25,18 @@ public class Test extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textArea1 = new com.Product.GUI.textarea.TextArea();
+        textAreaScroll1 = new com.Product.GUI.textarea.TextAreaScroll();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        textArea1.setColumns(20);
+        textArea1.setRows(5);
+        jScrollPane1.setViewportView(textArea1);
+
+        getContentPane().add(jScrollPane1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(textAreaScroll1, java.awt.BorderLayout.PAGE_START);
 
         pack();
         setLocationRelativeTo(null);
@@ -67,5 +78,8 @@ public class Test extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JScrollPane jScrollPane1;
+    private com.Product.GUI.textarea.TextArea textArea1;
+    private com.Product.GUI.textarea.TextAreaScroll textAreaScroll1;
     // End of variables declaration//GEN-END:variables
 }

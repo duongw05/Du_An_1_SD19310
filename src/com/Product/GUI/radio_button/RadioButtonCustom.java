@@ -12,40 +12,36 @@ public class RadioButtonCustom extends JRadioButton {
     public RadioButtonCustom() {
         setOpaque(false);
         setCursor(new Cursor(Cursor.HAND_CURSOR));
-        setBackground(new Color(69, 124, 235));
+        setBackground(Color.WHITE);
     }
 
     @Override
-    public void paint(Graphics grphcs) {
-        super.paint(grphcs);
+    protected void paintComponent(Graphics grphcs) {
         Graphics2D g2 = (Graphics2D) grphcs;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        int ly = (getHeight() - 16) / 2;
+        
+        int diameter = Math.min(getHeight(), getWidth()) - 4;
+        int x = (getWidth() - diameter) / 2;
+        int y = (getHeight() - diameter) / 2;
+        
+        g2.setColor(Color.WHITE); // Màu trắng cho nền
+        g2.fillOval(x, y, diameter, diameter);
+        
         if (isSelected()) {
-            if (isEnabled()) {
-                g2.setColor(getBackground());
-            } else {
-                g2.setColor(Color.GRAY);
-            }
-            g2.fillOval(1, ly, 16, 16);
-            g2.setColor(Color.WHITE);
-            g2.fillOval(2, ly + 1, 14, 14);
-            if (isEnabled()) {
-                g2.setColor(getBackground());
-            } else {
-                g2.setColor(Color.GRAY);
-            }
-            g2.fillOval(5, ly + 4, 8, 8);
-        } else {
-            if (isFocusOwner()) {
-                g2.setColor(getBackground());
-            } else {
-                g2.setColor(Color.GRAY);
-            }
-            g2.fillOval(1, ly, 16, 16);
-            g2.setColor(Color.WHITE);
-            g2.fillOval(2, ly + 1, 14, 14);
+            g2.setColor(Color.BLACK); // Màu đen cho vòng tròn bên trong khi được chọn
+            g2.fillOval(x + diameter / 4, y + diameter / 4, diameter / 2, diameter / 2);
         }
+
+        if (isFocusOwner()) {
+            g2.setColor(Color.GRAY); // Màu xám cho viền khi được focus
+            g2.drawOval(x, y, diameter, diameter);
+        }
+
         g2.dispose();
+    }
+
+    @Override
+    protected void paintBorder(Graphics grphcs) {
+        // Không vẽ viền để tránh hiển thị viền màu xanh dương
     }
 }
