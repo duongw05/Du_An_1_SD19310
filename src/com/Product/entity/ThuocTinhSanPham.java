@@ -3,16 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.Product.entity;
-
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
 
 /**
  *
@@ -25,13 +21,7 @@ import lombok.ToString;
 @Setter
 @ToString
 
-public class SanPham {
-
-    private Integer id;
-    private String maSanPham;
-    private String tenSanPham;
-    private String moTa;
-    private boolean trangThai;
-    private Date ngayTao;
-    
+public class ThuocTinhSanPham {
+    private String maThuocTinhSanPham;
+    private String tenThuocTinhSanPham;
 }

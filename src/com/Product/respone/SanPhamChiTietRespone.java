@@ -39,7 +39,7 @@ public class SanPhamChiTietRespone {
     private String phongCach;
     private Double giaBan;
     private Integer soLuong;
-    private String trangThai;
+    private boolean trangThai;
     
     
 }

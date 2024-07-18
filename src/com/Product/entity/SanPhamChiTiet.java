@@ -35,7 +35,7 @@ public class SanPhamChiTiet {
     private Double giaBan;
     private Integer soLuongTon;
 //    private String hinhAnh;
-    private String trangThai;
+    private boolean trangThai;
     
     
 }
