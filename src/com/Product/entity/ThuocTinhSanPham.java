@@ -22,6 +22,7 @@ import lombok.ToString;
 @ToString
 
 public class ThuocTinhSanPham {
+    private Integer id;
     private String maThuocTinhSanPham;
     private String tenThuocTinhSanPham;
 }

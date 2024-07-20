@@ -4,15 +4,11 @@
  */
 package com.Product.entity;
 
-import java.util.Date;
-
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-
 
 /**
  *
@@ -20,19 +16,13 @@ import lombok.ToString;
  */
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @Getter
 @Setter
 @ToString
+public class ChatLieu {
+     private Integer id;
 
-public class SanPham {
+    private String ma;
 
-    private Integer id;
-    private String maSanPham;
-    private String tenSanPham;
-    private String moTa;
-    private Integer soLuong;
-    private boolean trangThai;
-    private Date ngayTao;
-    
+    private String ten;
 }

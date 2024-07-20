@@ -48,8 +48,8 @@
                       <Group type="102" attributes="0">
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="textField1" pref="370" max="32767" attributes="0"/>
-                              <Component id="textField2" max="32767" attributes="0"/>
+                              <Component id="txt_MaThuongHieu" pref="370" max="32767" attributes="0"/>
+                              <Component id="txt_TenThuongHieu" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -72,9 +72,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="34" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                  <Component id="textField1" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_MaThuongHieu" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                  <Component id="textField2" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_TenThuongHieu" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="buttonBadges1" pref="43" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
@@ -83,12 +83,14 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="com.Product.GUI.textfield.TextField" name="textField1">
+        <Component class="com.Product.GUI.textfield.TextField" name="txt_MaThuongHieu">
           <Properties>
+            <Property name="text" type="java.lang.String" value="###"/>
+            <Property name="enabled" type="boolean" value="false"/>
             <Property name="labelText" type="java.lang.String" value="M&#xe3; Th&#x1b0;&#x1a1;ng Hi&#x1ec7;u"/>
           </Properties>
         </Component>
-        <Component class="com.Product.GUI.textfield.TextField" name="textField2">
+        <Component class="com.Product.GUI.textfield.TextField" name="txt_TenThuongHieu">
           <Properties>
             <Property name="labelText" type="java.lang.String" value="T&#xea;n Th&#x1b0;&#x1a1;ng Hi&#x1ec7;u"/>
           </Properties>
@@ -107,7 +109,13 @@
               <Color blue="66" green="cc" red="ff" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="1"/>
+            </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonBadges1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

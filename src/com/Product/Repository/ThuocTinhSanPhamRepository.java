@@ -14,18 +14,19 @@ import java.util.ArrayList;
 public class ThuocTinhSanPhamRepository {
     public ArrayList<ThuocTinhSanPham> getAll(){
         ArrayList<ThuocTinhSanPham> list = new ArrayList<>();
-        String sql =  "SELECT ma_chat_lieu, ten_chat_lieu FROM ChatLieu UNION ALL " +
-                       "SELECT ma_co_ao, ten_co_ao FROM CoAo UNION ALL " +
-                       "SELECT ma_do_day, ten_do_day FROM DoDay UNION ALL " +
-                       "SELECT ma_kich_thuoc, size FROM KichThuoc UNION ALL " +
-                       "SELECT ma_mau_sac, ten_mau FROM MauSac UNION ALL " +
-                       "SELECT ma_thuong_hieu, ten_thuong_hieu FROM ThuongHieu UNION ALL " +
-                       "SELECT ma_tinh_linh_hoat, ten_tinh_linh_hoat FROM TinhLinhHoat UNION ALL " +
-                       "SELECT ma_xuat_xu, ten_nuoc FROM XuatXu";
+        String sql =  "SELECT id, ma_chat_lieu AS ma, ten_chat_lieu FROM ChatLieu UNION ALL " +
+              "SELECT id, ma_co_ao AS ma, ten_co_ao FROM CoAo UNION ALL " +
+              "SELECT id, ma_do_day AS ma, ten_do_day FROM DoDay UNION ALL " +
+              "SELECT id, ma_kich_thuoc AS ma, size FROM KichThuoc UNION ALL " +
+              "SELECT id, ma_mau_sac AS ma, ten_mau FROM MauSac UNION ALL " +
+              "SELECT id, ma_thuong_hieu AS ma, ten_thuong_hieu FROM ThuongHieu UNION ALL " +
+              "SELECT id, ma_tinh_linh_hoat AS ma, ten_tinh_linh_hoat FROM TinhLinhHoat UNION ALL " +
+              "SELECT id, ma_xuat_xu AS ma, ten_nuoc FROM XuatXu";
+
         try (Connection conn = DBConnect.getConnection();PreparedStatement ps = conn.prepareStatement(sql)){
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                list.add(new ThuocTinhSanPham(rs.getString(1), rs.getString(2)));
+                list.add(new ThuocTinhSanPham(rs.getInt(1),rs.getString(2), rs.getString(3)));
             }
         } catch (Exception e) {
             e.printStackTrace(System.out);
@@ -35,11 +36,11 @@ public class ThuocTinhSanPhamRepository {
     
     public ArrayList<ThuocTinhSanPham> getChatLieu(){
         ArrayList<ThuocTinhSanPham> list = new ArrayList<>();
-        String sql =  "SELECT ma_chat_lieu, ten_chat_lieu FROM ChatLieu";
+        String sql =  "SELECT id,ma_chat_lieu, ten_chat_lieu FROM ChatLieu";
         try (Connection conn = DBConnect.getConnection();PreparedStatement ps = conn.prepareStatement(sql)){
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                list.add(new ThuocTinhSanPham(rs.getString(1), rs.getString(2)));
+                list.add(new ThuocTinhSanPham(rs.getInt(1),rs.getString(2), rs.getString(3)));
             }
         } catch (Exception e) {
             e.printStackTrace(System.out);
@@ -49,11 +50,11 @@ public class ThuocTinhSanPhamRepository {
     
     public ArrayList<ThuocTinhSanPham> getCoAO(){
         ArrayList<ThuocTinhSanPham> list = new ArrayList<>();
-        String sql =  "SELECT ma_co_ao, ten_co_ao FROM CoAo";
+        String sql =  "SELECT id,ma_co_ao, ten_co_ao FROM CoAo";
         try (Connection conn = DBConnect.getConnection();PreparedStatement ps = conn.prepareStatement(sql)){
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                list.add(new ThuocTinhSanPham(rs.getString(1), rs.getString(2)));
+                 list.add(new ThuocTinhSanPham(rs.getInt(1),rs.getString(2), rs.getString(3)));
             }
         } catch (Exception e) {
             e.printStackTrace(System.out);
@@ -63,12 +64,11 @@ public class ThuocTinhSanPhamRepository {
     
     public ArrayList<ThuocTinhSanPham> getDoDay(){
         ArrayList<ThuocTinhSanPham> list = new ArrayList<>();
-        String sql =  "SELECT ma_do_day, ten_do_day FROM DoDay";
+        String sql =  "SELECT id,ma_do_day, ten_do_day FROM DoDay";
         try (Connection conn = DBConnect.getConnection();PreparedStatement ps = conn.prepareStatement(sql)){
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                list.add(new ThuocTinhSanPham(rs.getString(1), rs.getString(2)));
-            }
+                list.add(new ThuocTinhSanPham(rs.getInt(1),rs.getString(2), rs.getString(3)));          }
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
@@ -77,12 +77,11 @@ public class ThuocTinhSanPhamRepository {
     
     public ArrayList<ThuocTinhSanPham> getKichThuoc(){
         ArrayList<ThuocTinhSanPham> list = new ArrayList<>();
-        String sql =  "SELECT ma_kich_thuoc, size FROM KichThuoc";
+        String sql =  "SELECT id,ma_kich_thuoc, size FROM KichThuoc";
         try (Connection conn = DBConnect.getConnection();PreparedStatement ps = conn.prepareStatement(sql)){
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                list.add(new ThuocTinhSanPham(rs.getString(1), rs.getString(2)));
-            }
+                   list.add(new ThuocTinhSanPham(rs.getInt(1),rs.getString(2), rs.getString(3)));          }
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
@@ -90,12 +89,11 @@ public class ThuocTinhSanPhamRepository {
     }
     public ArrayList<ThuocTinhSanPham> getMauSac(){
         ArrayList<ThuocTinhSanPham> list = new ArrayList<>();
-        String sql =  "SELECT ma_mau_sac, ten_mau FROM MauSac";
+        String sql =  "SELECT id,ma_mau_sac, ten_mau FROM MauSac";
         try (Connection conn = DBConnect.getConnection();PreparedStatement ps = conn.prepareStatement(sql)){
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                list.add(new ThuocTinhSanPham(rs.getString(1), rs.getString(2)));
-            }
+                 list.add(new ThuocTinhSanPham(rs.getInt(1),rs.getString(2), rs.getString(3)));          }
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
@@ -103,12 +101,11 @@ public class ThuocTinhSanPhamRepository {
     }
     public ArrayList<ThuocTinhSanPham> getThuongHieu(){
         ArrayList<ThuocTinhSanPham> list = new ArrayList<>();
-        String sql =  "SELECT ma_thuong_hieu, ten_thuong_hieu FROM ThuongHieu";
+        String sql =  "SELECT id,ma_thuong_hieu, ten_thuong_hieu FROM ThuongHieu";
         try (Connection conn = DBConnect.getConnection();PreparedStatement ps = conn.prepareStatement(sql)){
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                list.add(new ThuocTinhSanPham(rs.getString(1), rs.getString(2)));
-            }
+                 list.add(new ThuocTinhSanPham(rs.getInt(1),rs.getString(2), rs.getString(3)));           }
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
@@ -117,12 +114,11 @@ public class ThuocTinhSanPhamRepository {
     
     public ArrayList<ThuocTinhSanPham> getTinhLinhHoat(){
         ArrayList<ThuocTinhSanPham> list = new ArrayList<>();
-        String sql =  "SELECT ma_tinh_linh_hoat, ten_tinh_linh_hoat FROM TinhLinhHoat";
+        String sql =  "SELECT id,ma_tinh_linh_hoat, ten_tinh_linh_hoat FROM TinhLinhHoat";
         try (Connection conn = DBConnect.getConnection();PreparedStatement ps = conn.prepareStatement(sql)){
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                list.add(new ThuocTinhSanPham(rs.getString(1), rs.getString(2)));
-            }
+                 list.add(new ThuocTinhSanPham(rs.getInt(1),rs.getString(2), rs.getString(3)));           }
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
@@ -131,12 +127,11 @@ public class ThuocTinhSanPhamRepository {
     
     public ArrayList<ThuocTinhSanPham> getXuatXu(){
         ArrayList<ThuocTinhSanPham> list = new ArrayList<>();
-        String sql =  "SELECT ma_xuat_xu, ten_nuoc FROM XuatXu";
+        String sql =  "SELECT id,ma_xuat_xu, ten_nuoc FROM XuatXu";
         try (Connection conn = DBConnect.getConnection();PreparedStatement ps = conn.prepareStatement(sql)){
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                list.add(new ThuocTinhSanPham(rs.getString(1), rs.getString(2)));
-            }
+                 list.add(new ThuocTinhSanPham(rs.getInt(1),rs.getString(2), rs.getString(3)));           }
         } catch (Exception e) {
             e.printStackTrace(System.out);
         }
@@ -269,22 +264,248 @@ public class ThuocTinhSanPhamRepository {
         return check > 0;
     }
       
-//     public boolean update(ThuocTinhSanPham ttsp, Integer id) {
-//        int check = 0;
-//        String sql = "update SanPham\n" +
-//"set ten_san_pham=?,mo_ta=?\n" +
-//"where id =?";
-//        try (Connection con = DBConnect.getConnection();
-//                PreparedStatement ps = con.prepareStatement(sql)) {
-//            ps.setObject(1, ttsp.getTenThuocTinhSanPham());
-//            ps.setObject(2, ttsp.);
-//            ps.setObject(3, id);
-//            check = ps.executeUpdate();
-//        } catch (Exception e) {
-//            e.printStackTrace(System.out);
-//        }
-//        return check > 0;
-//    }
+     public boolean updateThuongHieu(ThuocTinhSanPham ttsp, Integer id) {
+        int check = 0;
+        String sql = "update ThuongHieu\n" +
+"set ten_thuong_hieu=?\n" +
+"where id=?";
+        try (Connection con = DBConnect.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, ttsp.getTenThuocTinhSanPham());
+            ps.setObject(2, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+     
+     public boolean updateChatLieu(ThuocTinhSanPham ttsp, Integer id) {
+        int check = 0;
+        String sql = "update ChatLieu\n" +
+"set ten_chat_lieu=?\n" +
+"where id=?";
+        try (Connection con = DBConnect.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, ttsp.getTenThuocTinhSanPham());
+            ps.setObject(2, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+     
+     public boolean updateKichThuoc(ThuocTinhSanPham ttsp, Integer id) {
+        int check = 0;
+        String sql = "update KichThuoc\n" +
+"set size=?\n" +
+"where id=?";
+        try (Connection con = DBConnect.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, ttsp.getTenThuocTinhSanPham());
+            ps.setObject(2, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+     
+     public boolean updateCoAo(ThuocTinhSanPham ttsp, Integer id) {
+        int check = 0;
+        String sql = "update CoAo\n" +
+"set ten_co_ao=?\n" +
+"where id=?";
+        try (Connection con = DBConnect.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, ttsp.getTenThuocTinhSanPham());
+            ps.setObject(2, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+     
+     public boolean updateMauSac(ThuocTinhSanPham ttsp, Integer id) {
+        int check = 0;
+        String sql = "update MauSac\n" +
+"set ten_mau=?\n" +
+"where id=?";
+        try (Connection con = DBConnect.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, ttsp.getTenThuocTinhSanPham());
+            ps.setObject(2, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+     
+     public boolean updateDoDay(ThuocTinhSanPham ttsp, Integer id) {
+        int check = 0;
+        String sql = "update DoDay\n" +
+"set ten_do_day=?\n" +
+"where id=?";
+        try (Connection con = DBConnect.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, ttsp.getTenThuocTinhSanPham());
+            ps.setObject(2, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+     
+     public boolean updatePhongCach(ThuocTinhSanPham ttsp, String ma) {
+        int check = 0;
+        String sql = "update TinhLinhHoat\n" +
+"set ten_tinh_linh_hoat=?\n" +
+"where ma_tinh_linh_hoat=?";
+        try (Connection con = DBConnect.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, ttsp.getTenThuocTinhSanPham());
+            ps.setObject(2, ttsp.getMaThuocTinhSanPham());
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+     
+     public boolean updateXuatXu(ThuocTinhSanPham ttsp, Integer id) {
+        int check = 0;
+        String sql = "update XuatXu\n" +
+"set ten_nuoc=?\n" +
+"where id=?";
+        try (Connection con = DBConnect.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, ttsp.getTenThuocTinhSanPham());
+            ps.setObject(2, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+     
+    public boolean removeThuongHieu(Integer id) {
+        int check = 0;
+        String sql = "update ThuongHieu\n" +
+"set trang_thai=0\n" +
+"where id=?";
+        try (Connection con = DBConnect.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+    
+    public boolean removeChatLieu(Integer id) {
+        int check = 0;
+        String sql = "update ThuongHieu\n" +
+"set trang_thai=0\n" +
+"where id=?";
+        try (Connection con = DBConnect.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+    public boolean removeKichThuoc(Integer id) {
+        int check = 0;
+        String sql = "update ThuongHieu\n" +
+"set trang_thai=0\n" +
+"where id=?";
+        try (Connection con = DBConnect.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+    public boolean removeCoAo(Integer id) {
+        int check = 0;
+        String sql = "update ThuongHieu\n" +
+"set trang_thai=0\n" +
+"where id=?";
+        try (Connection con = DBConnect.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+    public boolean removeMauSac(Integer id) {
+        int check = 0;
+        String sql = "update ThuongHieu\n" +
+"set trang_thai=0\n" +
+"where id=?";
+        try (Connection con = DBConnect.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+    public boolean removeDoDay(Integer id) {
+        int check = 0;
+        String sql = "update ThuongHieu\n" +
+"set trang_thai=0\n" +
+"where id=?";
+        try (Connection con = DBConnect.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+    public boolean removePhongCach(Integer id) {
+        int check = 0;
+        String sql = "update ThuongHieu\n" +
+"set trang_thai=0\n" +
+"where id=?";
+        try (Connection con = DBConnect.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+    public boolean removeXuatXu(Integer id) {
+        int check = 0;
+        String sql = "update ThuongHieu\n" +
+"set trang_thai=0\n" +
+"where id=?";
+        try (Connection con = DBConnect.getConnection();
+                PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setObject(1, id);
+            check = ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+        }
+        return check > 0;
+    }
+     
 }
 
     

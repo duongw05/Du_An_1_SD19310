@@ -71,6 +71,11 @@ public class ThemTenSanPhamJFrame extends javax.swing.JFrame {
         btnThemThuocTinh.setBackground(new java.awt.Color(255, 204, 153));
         btnThemThuocTinh.setText("Thêm");
         btnThemThuocTinh.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnThemThuocTinh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemThuocTinhActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Thêm Tên Sản Phẩm");
@@ -124,6 +129,12 @@ public class ThemTenSanPhamJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnThemThuocTinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemThuocTinhActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Thêm Thành Công");
+        this.dispose();
+    }//GEN-LAST:event_btnThemThuocTinhActionPerformed
 
     /**
      * @param args the command line arguments

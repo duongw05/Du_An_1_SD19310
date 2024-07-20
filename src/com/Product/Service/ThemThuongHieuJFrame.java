@@ -4,18 +4,50 @@
  */
 package com.Product.Service;
 
+import com.Product.Repository.ThuocTinhSanPhamRepository;
+import com.Product.entity.ThuocTinhSanPham;
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author ADMIN
  */
 public class ThemThuongHieuJFrame extends javax.swing.JFrame {
-
+    private DefaultTableModel dtmThuocTinhSanPham;
+    private ThuocTinhSanPhamRepository thuocTinhSanPhamRepository;
     /**
      * Creates new form ThemThuongHieuJFrame
      */
     public ThemThuongHieuJFrame() {
         initComponents();
+        setTitle("Thêm Thương Hiệu");
+//         dtmThuocTinhSanPham = (DefaultTableModel) tbl_th.getModel();
     }
+    
+     private ThuocTinhSanPham getFormDataThuocTinhSP() {
+        if (txt_TenThuongHieu.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Bạn chưa nhập tên thuộc tính", "Lỗi Nhập Liệu", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+
+        ThuocTinhSanPham ttsp = ThuocTinhSanPham.builder()
+                .maThuocTinhSanPham(txt_MaThuongHieu.getText())
+                .tenThuocTinhSanPham(txt_TenThuongHieu.getText())
+                .build();
+
+        return ttsp;
+    }
+     
+      private void showTableThuocTinhSanPham(ArrayList<ThuocTinhSanPham> lists) {
+        dtmThuocTinhSanPham.setRowCount(0);
+        AtomicInteger index = new AtomicInteger(1);
+        lists.forEach(s -> dtmThuocTinhSanPham.addRow(new Object[]{
+            index.getAndIncrement(), s.getMaThuocTinhSanPham(), s.getTenThuocTinhSanPham(),}));
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,8 +59,8 @@ public class ThemThuongHieuJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        textField1 = new com.Product.GUI.textfield.TextField();
-        textField2 = new com.Product.GUI.textfield.TextField();
+        txt_MaThuongHieu = new com.Product.GUI.textfield.TextField();
+        txt_TenThuongHieu = new com.Product.GUI.textfield.TextField();
         jLabel1 = new javax.swing.JLabel();
         buttonBadges1 = new com.Product.swing.ButtonBadges();
 
@@ -36,15 +68,23 @@ public class ThemThuongHieuJFrame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        textField1.setLabelText("Mã Thương Hiệu");
+        txt_MaThuongHieu.setText("###");
+        txt_MaThuongHieu.setEnabled(false);
+        txt_MaThuongHieu.setLabelText("Mã Thương Hiệu");
 
-        textField2.setLabelText("Tên Thương Hiệu");
+        txt_TenThuongHieu.setLabelText("Tên Thương Hiệu");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Thêm Thương Hiệu");
 
         buttonBadges1.setBackground(new java.awt.Color(255, 204, 102));
         buttonBadges1.setText("Thêm");
+        buttonBadges1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        buttonBadges1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBadges1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -55,8 +95,8 @@ public class ThemThuongHieuJFrame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(15, 15, 15)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(textField1, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
-                            .addComponent(textField2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(txt_MaThuongHieu, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
+                            .addComponent(txt_TenThuongHieu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(132, 132, 132)
                         .addComponent(buttonBadges1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -72,9 +112,9 @@ public class ThemThuongHieuJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
-                .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_MaThuongHieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
-                .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_TenThuongHieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonBadges1, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
                 .addGap(32, 32, 32))
@@ -93,6 +133,22 @@ public class ThemThuongHieuJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void buttonBadges1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBadges1ActionPerformed
+        // TODO add your handling code here:
+        
+         ThuocTinhSanPham ttsp = getFormDataThuocTinhSP();
+        if (ttsp == null) {
+            return;
+        }
+        try {
+            
+        } catch (Exception e) {
+        }
+            
+        JOptionPane.showMessageDialog(this, "Thêm thành công");
+        this.dispose();
+    }//GEN-LAST:event_buttonBadges1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,7 +189,7 @@ public class ThemThuongHieuJFrame extends javax.swing.JFrame {
     private com.Product.swing.ButtonBadges buttonBadges1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private com.Product.GUI.textfield.TextField textField1;
-    private com.Product.GUI.textfield.TextField textField2;
+    private com.Product.GUI.textfield.TextField txt_MaThuongHieu;
+    private com.Product.GUI.textfield.TextField txt_TenThuongHieu;
     // End of variables declaration//GEN-END:variables
 }

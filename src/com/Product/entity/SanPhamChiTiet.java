@@ -5,10 +5,12 @@
 package com.Product.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+
 
 /**
  *
@@ -16,25 +18,27 @@ import lombok.ToString;
  */
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Getter
 @Setter
 @ToString
 
+
 public class SanPhamChiTiet {
     private Integer id;
     private Integer sanPhamID;
-    private Integer thuongHieu;
+    private Integer thuongHieuID;
     private Integer chatLieuID;
     private Integer kichThuocID;
     private Integer coAoID;
     private Integer mauSacID;
     private Integer doDayID;
     private Integer tinhLinhHoatID;
-    private Integer XuatXu;
+    private Integer XuatXuID;
+    private String maSanPhamChiTiet;
     private String tenSanPham;
     private Double giaBan;
     private Integer soLuongTon;
-//    private String hinhAnh;
     private boolean trangThai;
     
     

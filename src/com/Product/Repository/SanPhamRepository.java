@@ -15,14 +15,13 @@ import java.util.Date;
 public class SanPhamRepository {
     public ArrayList<SanPham> getAll(){
         ArrayList<SanPham> list = new ArrayList<>();
-        String sql ="select id,ma_san_pham,ten_san_pham,mo_ta,trang_thai,ngay_tao\n" +
-"from SanPham";
+        String sql ="select id,ma_san_pham,ten_san_pham,mo_ta,so_luong,trang_thai,ngay_tao from SanPham";
         try (Connection con = DBConnect.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 list.add(new SanPham(rs.getInt(1), rs.getString(2), rs.getString(3),
-                        rs.getString(4), rs.getBoolean(5), rs.getDate(6)));
+                        rs.getString(4),rs.getInt(5), rs.getBoolean(6), rs.getDate(7)));
             }
             
         } catch (Exception e) {
@@ -33,7 +32,7 @@ public class SanPhamRepository {
     
     public ArrayList<SanPham> getSanPhamDangBan(){
         ArrayList<SanPham> list = new ArrayList<>();
-        String sql ="select id,ma_san_pham,ten_san_pham,mo_ta,trang_thai,ngay_tao\n" +
+        String sql ="select id,ma_san_pham,ten_san_pham,mo_ta,so_luong,trang_thai,ngay_tao\n" +
 "from SanPham\n" +
 "where trang_thai = 1";
         try (Connection con = DBConnect.getConnection();
@@ -41,7 +40,7 @@ public class SanPhamRepository {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 list.add(new SanPham(rs.getInt(1), rs.getString(2), rs.getString(3),
-                        rs.getString(4), rs.getBoolean(5), rs.getDate(6)));
+                        rs.getString(4), rs.getInt(5),rs.getBoolean(6), rs.getDate(7)));
             }
             
         } catch (Exception e) {
@@ -52,7 +51,7 @@ public class SanPhamRepository {
     
     public ArrayList<SanPham> getSanPhamNgungBan(){
         ArrayList<SanPham> list = new ArrayList<>();
-        String sql ="select id,ma_san_pham,ten_san_pham,mo_ta,trang_thai,ngay_tao\n" +
+        String sql ="select id,ma_san_pham,ten_san_pham,mo_ta,so_luong,trang_thai,ngay_tao\n" +
 "from SanPham\n" +
 "where trang_thai = 0";
         try (Connection con = DBConnect.getConnection();
@@ -60,7 +59,7 @@ public class SanPhamRepository {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 list.add(new SanPham(rs.getInt(1), rs.getString(2), rs.getString(3),
-                        rs.getString(4), rs.getBoolean(5), rs.getDate(6)));
+                        rs.getString(4),rs.getInt(5), rs.getBoolean(6), rs.getDate(7)));
             }
             
         } catch (Exception e) {
@@ -88,7 +87,7 @@ public class SanPhamRepository {
     
      public ArrayList<SanPham> getAllGiamDan(){
         ArrayList<SanPham> list = new ArrayList<>();
-        String sql ="select id,ma_san_pham,ten_san_pham,mo_ta,trang_thai,ngay_tao\n" +
+        String sql ="select id,ma_san_pham,ten_san_pham,mo_ta,so_luong,trang_thai,ngay_tao\n" +
 "from SanPham\n" +
 "ORDER BY ngay_tao desc";
         try (Connection con = DBConnect.getConnection();
@@ -96,7 +95,7 @@ public class SanPhamRepository {
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 list.add(new SanPham(rs.getInt(1), rs.getString(2), rs.getString(3),
-                        rs.getString(4), rs.getBoolean(5), rs.getDate(6)));
+                        rs.getString(4),rs.getInt(5), rs.getBoolean(6), rs.getDate(7)));
             }
             
         } catch (Exception e) {
@@ -136,4 +135,42 @@ public class SanPhamRepository {
         }
         return check > 0;
     }
+      
+      
+      
+      public ArrayList<SanPham> searchh(String maSP) {
+    String sql = "SELECT id, ma_san_pham, ten_san_pham, mo_ta, so_luong, trang_thai, ngay_tao " +
+             "FROM SanPham " +
+             "WHERE ma_san_pham LIKE ? OR ten_san_pham LIKE ? OR mo_ta LIKE ? OR trang_thai LIKE ? OR ngay_tao LIKE ?";
+;
+
+    ArrayList<SanPham> lists = new ArrayList<>();
+    try (Connection con = DBConnect.getConnection();
+         PreparedStatement ps = con.prepareStatement(sql)) {
+        
+        String searchString = "%" + maSP + "%"; // Thêm % vào để tạo thành mô phỏng tìm kiếm
+        // Đặt giá trị cho các tham số trong câu truy vấn SQL
+        for (int i = 1; i <= 5; i++) {
+            ps.setString(i, searchString);
+        }
+        
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String ma_san_pham = rs.getString("ma_san_pham");
+            String ten_san_pham = rs.getString("ten_san_pham");
+            String mo_ta = rs.getString("mo_ta");
+            Integer so_luong = rs.getInt("so_luong");
+            Boolean trang_thai = rs.getBoolean("trang_thai");
+            Date ngay_tao = rs.getDate("ngay_tao");
+            
+            SanPham sanPham = new SanPham(id, ma_san_pham, ten_san_pham, mo_ta, so_luong, true, ngay_tao);
+            lists.add(sanPham);
+        }
+    } catch (Exception e) {
+        System.out.println("Error executing SQL query: " + e.getMessage());
+        e.printStackTrace(); // In ra stack trace để xem chi tiết lỗi
+    }
+    return lists;
+}
 }
