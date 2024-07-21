@@ -19,6 +19,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class XuatXu {
+    
     private Integer id;
 
     private String ma;

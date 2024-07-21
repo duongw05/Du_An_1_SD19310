@@ -51,8 +51,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="textField1" pref="334" max="32767" attributes="0"/>
-                              <Component id="textField2" max="32767" attributes="0"/>
+                              <Component id="txt_TenDoDay" pref="334" max="32767" attributes="0"/>
+                              <Component id="txt_MaDoDay" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -74,9 +74,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="39" max="-2" attributes="0"/>
                   <EmptySpace pref="36" max="32767" attributes="0"/>
-                  <Component id="textField2" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_MaDoDay" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="textField1" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_TenDoDay" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="buttonBadges1" min="-2" pref="42" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
@@ -93,14 +93,14 @@
             <Property name="text" type="java.lang.String" value="Th&#xea;m &#x110;&#x1ed9; D&#xe0;y"/>
           </Properties>
         </Component>
-        <Component class="com.Product.GUI.textfield.TextField" name="textField2">
+        <Component class="com.Product.GUI.textfield.TextField" name="txt_MaDoDay">
           <Properties>
             <Property name="text" type="java.lang.String" value="###"/>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="labelText" type="java.lang.String" value="M&#xe3; &#x110;&#x1ed9; D&#xe0;y"/>
           </Properties>
         </Component>
-        <Component class="com.Product.GUI.textfield.TextField" name="textField1">
+        <Component class="com.Product.GUI.textfield.TextField" name="txt_TenDoDay">
           <Properties>
             <Property name="labelText" type="java.lang.String" value="T&#xea;n &#x110;&#x1ed9; D&#xe0;y"/>
           </Properties>

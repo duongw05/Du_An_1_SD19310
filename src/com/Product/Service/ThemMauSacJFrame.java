@@ -4,13 +4,21 @@
  */
 package com.Product.Service;
 
+import com.Product.Repository.MauSacRepository;
+import com.Product.Repository.ThuocTinhSanPhamRepository;
+import com.Product.entity.ThuocTinhSanPham;
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author ADMIN
  */
 public class ThemMauSacJFrame extends javax.swing.JFrame {
+        private DefaultTableModel dtmThuocTinhSanPham;
+    private ThuocTinhSanPhamRepository thuocTinhSanPhamRepository;
 
     /**
      * Creates new form ThemMauSacJFrame
@@ -19,8 +27,29 @@ public class ThemMauSacJFrame extends javax.swing.JFrame {
         initComponents();
         setTitle("Thêm Màu Sắc");
         setLocationRelativeTo(null);
+        thuocTinhSanPhamRepository = new ThuocTinhSanPhamRepository();
+    }
+    
+     
+     private ThuocTinhSanPham getFormDataThuocTinhSP() {
+        if (txt_MaMauSac.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Bạn chưa nhập tên thuộc tính", "Lỗi Nhập Liệu", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+
+        ThuocTinhSanPham ttsp = new ThuocTinhSanPham();
+        ttsp.setMaThuocTinhSanPham(txt_MaMauSac.getText());
+        ttsp.setTenThuocTinhSanPham(txt_TenMau.getText());
+
+        return ttsp;
     }
 
+    private void showTableThuocTinhSanPham(ArrayList<ThuocTinhSanPham> lists) {
+        dtmThuocTinhSanPham.setRowCount(0);
+        AtomicInteger index = new AtomicInteger(1);
+        lists.forEach(s -> dtmThuocTinhSanPham.addRow(new Object[]{
+            index.getAndIncrement(), s.getMaThuocTinhSanPham(), s.getTenThuocTinhSanPham(),}));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,8 +61,8 @@ public class ThemMauSacJFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        textField1 = new com.Product.GUI.textfield.TextField();
-        textField2 = new com.Product.GUI.textfield.TextField();
+        txt_MaMauSac = new com.Product.GUI.textfield.TextField();
+        txt_TenMau = new com.Product.GUI.textfield.TextField();
         buttonBadges1 = new com.Product.swing.ButtonBadges();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -44,14 +73,14 @@ public class ThemMauSacJFrame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Thêm Màu Sắc");
 
-        textField1.setText("###");
-        textField1.setEnabled(false);
-        textField1.setLabelText("Mã Màu Sắc");
+        txt_MaMauSac.setText("###");
+        txt_MaMauSac.setEnabled(false);
+        txt_MaMauSac.setLabelText("Mã Màu Sắc");
 
-        textField2.setLabelText("Tên Màu ");
-        textField2.addActionListener(new java.awt.event.ActionListener() {
+        txt_TenMau.setLabelText("Tên Màu ");
+        txt_TenMau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField2ActionPerformed(evt);
+                txt_TenMauActionPerformed(evt);
             }
         });
 
@@ -78,9 +107,9 @@ public class ThemMauSacJFrame extends javax.swing.JFrame {
                         .addGap(17, 17, 17)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_TenMau, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 10, Short.MAX_VALUE))
-                            .addComponent(textField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(txt_MaMauSac, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -92,9 +121,9 @@ public class ThemMauSacJFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_MaMauSac, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_TenMau, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonBadges1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(38, Short.MAX_VALUE))
@@ -116,13 +145,21 @@ public class ThemMauSacJFrame extends javax.swing.JFrame {
 
     private void buttonBadges1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBadges1ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Thêm Thành Công");
-        this.dispose();
+        ThuocTinhSanPham ttsp = getFormDataThuocTinhSP();
+        if (ttsp != null) {
+            if(thuocTinhSanPhamRepository.insertMauSac(ttsp)) {
+                JOptionPane.showMessageDialog(null, "Thêm thuộc tính sản phẩm thành công");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Thêm thất bại");
+                this.dispose();
+            }
+        }
     }//GEN-LAST:event_buttonBadges1ActionPerformed
 
-    private void textField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField2ActionPerformed
+    private void txt_TenMauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_TenMauActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField2ActionPerformed
+    }//GEN-LAST:event_txt_TenMauActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,7 +200,7 @@ public class ThemMauSacJFrame extends javax.swing.JFrame {
     private com.Product.swing.ButtonBadges buttonBadges1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private com.Product.GUI.textfield.TextField textField1;
-    private com.Product.GUI.textfield.TextField textField2;
+    private com.Product.GUI.textfield.TextField txt_MaMauSac;
+    private com.Product.GUI.textfield.TextField txt_TenMau;
     // End of variables declaration//GEN-END:variables
 }

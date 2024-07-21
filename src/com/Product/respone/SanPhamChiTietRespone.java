@@ -28,6 +28,7 @@ import lombok.ToString;
 public class SanPhamChiTietRespone {
     private Integer ID;
     private String maSPCT;
+    private String tenSP;
     private String thuongHieu;
     private String xuatXu;
     private String mauSac;

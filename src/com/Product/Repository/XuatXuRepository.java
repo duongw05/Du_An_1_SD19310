@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class XuatXuRepository {
     public ArrayList<XuatXu> getAll(){
         ArrayList<XuatXu> list = new ArrayList<>();
-        String sql ="select id,ma_xuat_xu,ten_nuoc from XuatXu";
+        String sql ="select id,ma_xuat_xu,ten_nuoc from XuatXu where trang_thai = 1";
         try (Connection con = DBConnect.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();

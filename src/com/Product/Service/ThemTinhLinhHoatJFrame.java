@@ -15,28 +15,27 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ADMIN
  */
-public class ThemDoDayJFrame extends javax.swing.JFrame {
-    private DefaultTableModel dtmThuocTinhSanPham;
-    private ThuocTinhSanPhamRepository thuocTinhSanPhamRepository = new ThuocTinhSanPhamRepository();
+public class ThemTinhLinhHoatJFrame extends javax.swing.JFrame {
+        private DefaultTableModel dtmThuocTinhSanPham;
+    private ThuocTinhSanPhamRepository thuocTinhSanPhamRepository;
     /**
-     * Creates new form ThemDoDayJFrame
+     * Creates new form ThemTinhLinhHoat
      */
-    public ThemDoDayJFrame() {
+    public ThemTinhLinhHoatJFrame() {
         initComponents();
-        setTitle("Thêm Độ Dày");
+        setTitle("Thêm Phong Cách");
         setLocationRelativeTo(null);
     }
     
-    
      private ThuocTinhSanPham getFormDataThuocTinhSP() {
-        if (txt_TenDoDay.getText().trim().isEmpty()) {
+        if (txt_TenPhongCach.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Bạn chưa nhập tên thuộc tính", "Lỗi Nhập Liệu", JOptionPane.ERROR_MESSAGE);
             return null;
         }
 
         ThuocTinhSanPham ttsp = new ThuocTinhSanPham();
-        ttsp.setMaThuocTinhSanPham(txt_MaDoDay.getText());
-        ttsp.setTenThuocTinhSanPham(txt_TenDoDay.getText());
+        ttsp.setMaThuocTinhSanPham(txt_MaPhongCach.getText());
+        ttsp.setTenThuocTinhSanPham(txt_TenPhongCach.getText());
 
         return ttsp;
     }
@@ -59,30 +58,33 @@ public class ThemDoDayJFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txt_MaDoDay = new com.Product.GUI.textfield.TextField();
-        txt_TenDoDay = new com.Product.GUI.textfield.TextField();
-        buttonBadges1 = new com.Product.swing.ButtonBadges();
+        txt_MaPhongCach = new com.Product.GUI.textfield.TextField();
+        txt_TenPhongCach = new com.Product.GUI.textfield.TextField();
+        btn_Them = new com.Product.swing.ButtonBadges();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setAutoscrolls(true);
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setText("Thêm Độ Dày");
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setText("Thêm Phong Cách");
 
-        txt_MaDoDay.setText("###");
-        txt_MaDoDay.setEnabled(false);
-        txt_MaDoDay.setLabelText("Mã Độ Dày");
+        txt_MaPhongCach.setText("###");
+        txt_MaPhongCach.setEnabled(false);
+        txt_MaPhongCach.setLabelText("Mã Phong Cách");
 
-        txt_TenDoDay.setLabelText("Tên Độ Dày");
+        txt_TenPhongCach.setToolTipText("");
+        txt_TenPhongCach.setLabelText("Tên Phong Cách");
 
-        buttonBadges1.setBackground(new java.awt.Color(255, 204, 102));
-        buttonBadges1.setText("Thêm");
-        buttonBadges1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        buttonBadges1.addActionListener(new java.awt.event.ActionListener() {
+        btn_Them.setBackground(new java.awt.Color(255, 204, 153));
+        btn_Them.setText("Thêm");
+        btn_Them.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btn_Them.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonBadges1ActionPerformed(evt);
+                btn_ThemActionPerformed(evt);
             }
         });
 
@@ -90,40 +92,41 @@ public class ThemDoDayJFrame extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(125, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(108, 108, 108))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
+                        .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txt_TenDoDay, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
-                            .addComponent(txt_MaDoDay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(txt_MaPhongCach, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
+                            .addComponent(txt_TenPhongCach, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(buttonBadges1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                        .addGap(141, 141, 141)
+                        .addComponent(btn_Them, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(txt_MaDoDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(txt_TenDoDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(buttonBadges1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(txt_MaPhongCach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txt_TenPhongCach, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(btn_Them, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,11 +136,11 @@ public class ThemDoDayJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonBadges1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBadges1ActionPerformed
+    private void btn_ThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ThemActionPerformed
         // TODO add your handling code here:
-          ThuocTinhSanPham ttsp = getFormDataThuocTinhSP();
+        ThuocTinhSanPham ttsp = getFormDataThuocTinhSP();
         if (ttsp != null) {
-            if(thuocTinhSanPhamRepository.insertDoDay(ttsp)) {
+            if(thuocTinhSanPhamRepository.insertPhongCach(ttsp)) {
                 JOptionPane.showMessageDialog(null, "Thêm thuộc tính sản phẩm thành công");
                 this.dispose();
             } else {
@@ -145,7 +148,7 @@ public class ThemDoDayJFrame extends javax.swing.JFrame {
                 this.dispose();
             }
         }
-    }//GEN-LAST:event_buttonBadges1ActionPerformed
+    }//GEN-LAST:event_btn_ThemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,29 +167,30 @@ public class ThemDoDayJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ThemDoDayJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThemTinhLinhHoatJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ThemDoDayJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThemTinhLinhHoatJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ThemDoDayJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThemTinhLinhHoatJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ThemDoDayJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ThemTinhLinhHoatJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ThemDoDayJFrame().setVisible(true);
+                new ThemTinhLinhHoatJFrame().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.Product.swing.ButtonBadges buttonBadges1;
+    private com.Product.swing.ButtonBadges btn_Them;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private com.Product.GUI.textfield.TextField txt_MaDoDay;
-    private com.Product.GUI.textfield.TextField txt_TenDoDay;
+    private com.Product.GUI.textfield.TextField txt_MaPhongCach;
+    private com.Product.GUI.textfield.TextField txt_TenPhongCach;
     // End of variables declaration//GEN-END:variables
 }

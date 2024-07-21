@@ -4,8 +4,17 @@
  */
 package com.Product.Service;
 
+import com.Product.Repository.CoAoRepository;
+import com.Product.Repository.SanPhamChiTietRepository;
 import com.Product.Repository.ThuocTinhSanPhamRepository;
+import com.Product.entity.CoAo;
 import com.Product.entity.ThuocTinhSanPham;
+import com.Product.form.SanPhamForm;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,8 +23,10 @@ import javax.swing.table.DefaultTableModel;
  * @author ADMIN
  */
 public class ThemTenSanPhamJFrame extends javax.swing.JFrame {
+
     private DefaultTableModel dtmThuocTinhSanPham;
     private ThuocTinhSanPhamRepository thuocTinhSanPhamRepository;
+    private SanPhamChiTietRepository sanPhamChiTietRepository;
 
     /**
      * Creates new form TestJframe
@@ -25,23 +36,29 @@ public class ThemTenSanPhamJFrame extends javax.swing.JFrame {
         setTitle("Thêm Thuộc Tính Sản Phẩm");
         setLocationRelativeTo(null);
         thuocTinhSanPhamRepository = new ThuocTinhSanPhamRepository();
-        
+
     }
 
-    
-    private ThuocTinhSanPham getFormDataThuocTinhSP() {
+     private ThuocTinhSanPham getFormDataThuocTinhSP() {
         if (txtTenThuocTinh.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Bạn chưa nhập tên thuộc tính", "Lỗi Nhập Liệu", JOptionPane.ERROR_MESSAGE);
             return null;
         }
 
-        ThuocTinhSanPham ttsp = ThuocTinhSanPham.builder()
-                .maThuocTinhSanPham(txtMaThuocTinh.getText())
-                .tenThuocTinhSanPham(txtTenThuocTinh.getText())
-                .build();
+        ThuocTinhSanPham ttsp = new ThuocTinhSanPham();
+        ttsp.setMaThuocTinhSanPham(txtMaThuocTinh.getText());
+        ttsp.setTenThuocTinhSanPham(txtTenThuocTinh.getText());
 
         return ttsp;
     }
+
+    private void showTableThuocTinhSanPham(ArrayList<ThuocTinhSanPham> lists) {
+        dtmThuocTinhSanPham.setRowCount(0);
+        AtomicInteger index = new AtomicInteger(1);
+        lists.forEach(s -> dtmThuocTinhSanPham.addRow(new Object[]{
+            index.getAndIncrement(), s.getMaThuocTinhSanPham(), s.getTenThuocTinhSanPham(),}));
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,11 +79,11 @@ public class ThemTenSanPhamJFrame extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        txtTenThuocTinh.setLabelText("Tên Thuộc Tính");
+        txtTenThuocTinh.setLabelText("Tên Sản Phẩm");
 
         txtMaThuocTinh.setText("###");
         txtMaThuocTinh.setEnabled(false);
-        txtMaThuocTinh.setLabelText("Mã Thuộc Tính");
+        txtMaThuocTinh.setLabelText("Mã Sản Phẩm");
 
         btnThemThuocTinh.setBackground(new java.awt.Color(255, 204, 153));
         btnThemThuocTinh.setText("Thêm");
@@ -132,8 +149,18 @@ public class ThemTenSanPhamJFrame extends javax.swing.JFrame {
 
     private void btnThemThuocTinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemThuocTinhActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Thêm Thành Công");
-        this.dispose();
+        ThuocTinhSanPham ttsp = getFormDataThuocTinhSP();
+        if (ttsp != null) {
+            if(thuocTinhSanPhamRepository.insertCoAo(ttsp)) {
+                JOptionPane.showMessageDialog(null, "Thêm thuộc tính sản phẩm thành công");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Thêm thất bại");
+                this.dispose();
+            }
+        }
+
+
     }//GEN-LAST:event_btnThemThuocTinhActionPerformed
 
     /**

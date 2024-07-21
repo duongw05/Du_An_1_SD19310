@@ -26,6 +26,7 @@ import lombok.ToString;
 
 public class SanPhamChiTiet {
     private Integer id;
+    private String maSanPhamChiTiet;
     private Integer sanPhamID;
     private Integer thuongHieuID;
     private Integer chatLieuID;
@@ -35,8 +36,6 @@ public class SanPhamChiTiet {
     private Integer doDayID;
     private Integer tinhLinhHoatID;
     private Integer XuatXuID;
-    private String maSanPhamChiTiet;
-    private String tenSanPham;
     private Double giaBan;
     private Integer soLuongTon;
     private boolean trangThai;

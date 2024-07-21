@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class ChatLieuRepository {
     public ArrayList<ChatLieu> getAll(){
         ArrayList<ChatLieu> list = new ArrayList<>();
-        String sql ="select id,ma_chat_lieu,ten_chat_lieu from ChatLieu";
+        String sql ="select id,ma_chat_lieu,ten_chat_lieu from ChatLieu where trang_thai = 1";
         try (Connection con = DBConnect.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();

@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class TinhLinhHoatRepository {
     public ArrayList<TinhLinhHoat> getAll(){
         ArrayList<TinhLinhHoat> list = new ArrayList<>();
-        String sql ="select id,ma_tinh_linh_hoat,ten_tinh_linh_hoat from TinhLinhHoat";
+        String sql ="select id,ma_tinh_linh_hoat,ten_tinh_linh_hoat from TinhLinhHoat where trang_thai = 1";
         try (Connection con = DBConnect.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();

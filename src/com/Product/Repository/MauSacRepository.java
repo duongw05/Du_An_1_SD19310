@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class MauSacRepository {
     public ArrayList<MauSac> getAll(){
         ArrayList<MauSac> list = new ArrayList<>();
-        String sql ="select id,ma_mau_sac,ten_mau from MauSac";
+        String sql ="select id,ma_mau_sac,ten_mau from MauSac where trang_thai = 1";
         try (Connection con = DBConnect.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();

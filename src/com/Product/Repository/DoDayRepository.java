@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class DoDayRepository {
     public ArrayList<DoDay> getAll(){
         ArrayList<DoDay> list = new ArrayList<>();
-        String sql ="select id,ma_do_day,ten_do_day from DoDay";
+        String sql ="select id,ma_do_day,ten_do_day from DoDay where trang_thai = 1";
         try (Connection con = DBConnect.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();

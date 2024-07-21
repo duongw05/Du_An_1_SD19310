@@ -49,8 +49,8 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="textField2" pref="320" max="32767" attributes="0"/>
-                      <Component id="textField1" max="32767" attributes="0"/>
+                      <Component id="txt_TenKichThuoc" pref="320" max="32767" attributes="0"/>
+                      <Component id="txt_MaKichThuoc" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -75,9 +75,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" pref="30" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                  <Component id="textField1" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="txt_MaKichThuoc" min="-2" pref="55" max="-2" attributes="0"/>
                   <EmptySpace pref="36" max="32767" attributes="0"/>
-                  <Component id="textField2" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_TenKichThuoc" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="buttonBadges1" min="-2" pref="39" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
@@ -94,19 +94,19 @@
             <Property name="text" type="java.lang.String" value="K&#xed;ch Th&#x1b0;&#x1edb;c"/>
           </Properties>
         </Component>
-        <Component class="com.Product.GUI.textfield.TextField" name="textField1">
+        <Component class="com.Product.GUI.textfield.TextField" name="txt_MaKichThuoc">
           <Properties>
             <Property name="text" type="java.lang.String" value="###"/>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="labelText" type="java.lang.String" value="M&#xe3; K&#xed;ch Th&#x1b0;&#x1edb;c"/>
           </Properties>
         </Component>
-        <Component class="com.Product.GUI.textfield.TextField" name="textField2">
+        <Component class="com.Product.GUI.textfield.TextField" name="txt_TenKichThuoc">
           <Properties>
             <Property name="labelText" type="java.lang.String" value="Size"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textField2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_TenKichThuocActionPerformed"/>
           </Events>
         </Component>
         <Component class="com.Product.swing.ButtonBadges" name="buttonBadges1">

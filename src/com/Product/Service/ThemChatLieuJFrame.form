@@ -51,8 +51,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="textField1" pref="330" max="32767" attributes="0"/>
-                              <Component id="textField2" max="32767" attributes="0"/>
+                              <Component id="txt_MaChatLieu" pref="330" max="32767" attributes="0"/>
+                              <Component id="txt_TenChatLieu" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -75,9 +75,9 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                  <Component id="textField1" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_MaChatLieu" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="34" max="32767" attributes="0"/>
-                  <Component id="textField2" min="-2" max="-2" attributes="0"/>
+                  <Component id="txt_TenChatLieu" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="buttonBadges1" min="-2" pref="39" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
@@ -94,14 +94,14 @@
             <Property name="text" type="java.lang.String" value="Th&#xea;m Ch&#x1ea5;t Li&#x1ec7;u"/>
           </Properties>
         </Component>
-        <Component class="com.Product.GUI.textfield.TextField" name="textField1">
+        <Component class="com.Product.GUI.textfield.TextField" name="txt_MaChatLieu">
           <Properties>
             <Property name="text" type="java.lang.String" value="###"/>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="labelText" type="java.lang.String" value="M&#xe3; Ch&#x1ea5;t Li&#x1ec7;u"/>
           </Properties>
         </Component>
-        <Component class="com.Product.GUI.textfield.TextField" name="textField2">
+        <Component class="com.Product.GUI.textfield.TextField" name="txt_TenChatLieu">
           <Properties>
             <Property name="labelText" type="java.lang.String" value="T&#xea;n ch&#x1ea5;t li&#x1ec7;u"/>
           </Properties>

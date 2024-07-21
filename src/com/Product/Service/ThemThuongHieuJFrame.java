@@ -23,6 +23,7 @@ public class ThemThuongHieuJFrame extends javax.swing.JFrame {
      */
     public ThemThuongHieuJFrame() {
         initComponents();
+        setLocationRelativeTo(null);
         setTitle("Thêm Thương Hiệu");
 //         dtmThuocTinhSanPham = (DefaultTableModel) tbl_th.getModel();
     }
@@ -40,14 +41,14 @@ public class ThemThuongHieuJFrame extends javax.swing.JFrame {
 
         return ttsp;
     }
-     
-      private void showTableThuocTinhSanPham(ArrayList<ThuocTinhSanPham> lists) {
+
+    private void showTableThuocTinhSanPham(ArrayList<ThuocTinhSanPham> lists) {
         dtmThuocTinhSanPham.setRowCount(0);
         AtomicInteger index = new AtomicInteger(1);
         lists.forEach(s -> dtmThuocTinhSanPham.addRow(new Object[]{
             index.getAndIncrement(), s.getMaThuocTinhSanPham(), s.getTenThuocTinhSanPham(),}));
     }
-    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -136,18 +137,16 @@ public class ThemThuongHieuJFrame extends javax.swing.JFrame {
 
     private void buttonBadges1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBadges1ActionPerformed
         // TODO add your handling code here:
-        
-         ThuocTinhSanPham ttsp = getFormDataThuocTinhSP();
-        if (ttsp == null) {
-            return;
+        ThuocTinhSanPham ttsp = getFormDataThuocTinhSP();
+        if (ttsp != null) {
+            if(thuocTinhSanPhamRepository.insertThuongHieu(ttsp)) {
+                JOptionPane.showMessageDialog(null, "Thêm thuộc tính sản phẩm thành công");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Thêm thất bại");
+                this.dispose();
+            }
         }
-        try {
-            
-        } catch (Exception e) {
-        }
-            
-        JOptionPane.showMessageDialog(this, "Thêm thành công");
-        this.dispose();
     }//GEN-LAST:event_buttonBadges1ActionPerformed
 
     /**

@@ -4,14 +4,21 @@
  */
 package com.Product.Service;
 
+import com.Product.Repository.ThuocTinhSanPhamRepository;
+import com.Product.entity.ThuocTinhSanPham;
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author ADMIN
  */
 public class ThemKichThuocJFrame extends javax.swing.JFrame {
-
+        private DefaultTableModel dtmThuocTinhSanPham;
+    private ThuocTinhSanPhamRepository thuocTinhSanPhamRepository = new ThuocTinhSanPhamRepository();
+ 
     /**
      * Creates new form ThemKichThuocJFrame
      */
@@ -21,6 +28,27 @@ public class ThemKichThuocJFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         
     }
+    
+     private ThuocTinhSanPham getFormDataThuocTinhSP() {
+        if (txt_TenKichThuoc.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Bạn chưa nhập tên thuộc tính", "Lỗi Nhập Liệu", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+
+        ThuocTinhSanPham ttsp = new ThuocTinhSanPham();
+        ttsp.setMaThuocTinhSanPham(txt_MaKichThuoc.getText());
+        ttsp.setTenThuocTinhSanPham(txt_TenKichThuoc.getText());
+
+        return ttsp;
+    }
+
+    private void showTableThuocTinhSanPham(ArrayList<ThuocTinhSanPham> lists) {
+        dtmThuocTinhSanPham.setRowCount(0);
+        AtomicInteger index = new AtomicInteger(1);
+        lists.forEach(s -> dtmThuocTinhSanPham.addRow(new Object[]{
+            index.getAndIncrement(), s.getMaThuocTinhSanPham(), s.getTenThuocTinhSanPham(),}));
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,8 +61,8 @@ public class ThemKichThuocJFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        textField1 = new com.Product.GUI.textfield.TextField();
-        textField2 = new com.Product.GUI.textfield.TextField();
+        txt_MaKichThuoc = new com.Product.GUI.textfield.TextField();
+        txt_TenKichThuoc = new com.Product.GUI.textfield.TextField();
         buttonBadges1 = new com.Product.swing.ButtonBadges();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -45,14 +73,14 @@ public class ThemKichThuocJFrame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Kích Thước");
 
-        textField1.setText("###");
-        textField1.setEnabled(false);
-        textField1.setLabelText("Mã Kích Thước");
+        txt_MaKichThuoc.setText("###");
+        txt_MaKichThuoc.setEnabled(false);
+        txt_MaKichThuoc.setLabelText("Mã Kích Thước");
 
-        textField2.setLabelText("Size");
-        textField2.addActionListener(new java.awt.event.ActionListener() {
+        txt_TenKichThuoc.setLabelText("Size");
+        txt_TenKichThuoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField2ActionPerformed(evt);
+                txt_TenKichThuocActionPerformed(evt);
             }
         });
 
@@ -72,8 +100,8 @@ public class ThemKichThuocJFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(textField2, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
-                    .addComponent(textField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txt_TenKichThuoc, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                    .addComponent(txt_MaKichThuoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(142, Short.MAX_VALUE)
@@ -91,9 +119,9 @@ public class ThemKichThuocJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_MaKichThuoc, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_TenKichThuoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(buttonBadges1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
@@ -115,13 +143,21 @@ public class ThemKichThuocJFrame extends javax.swing.JFrame {
 
     private void buttonBadges1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBadges1ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Thêm Thành Công");
-        this.dispose();
+          ThuocTinhSanPham ttsp = getFormDataThuocTinhSP();
+        if (ttsp != null) {
+            if(thuocTinhSanPhamRepository.insertKichThuoc(ttsp)) {
+                JOptionPane.showMessageDialog(null, "Thêm thuộc tính sản phẩm thành công");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Thêm thất bại");
+                this.dispose();
+            }
+        }
     }//GEN-LAST:event_buttonBadges1ActionPerformed
 
-    private void textField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField2ActionPerformed
+    private void txt_TenKichThuocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_TenKichThuocActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField2ActionPerformed
+    }//GEN-LAST:event_txt_TenKichThuocActionPerformed
 
     /**
      * @param args the command line arguments
@@ -162,7 +198,7 @@ public class ThemKichThuocJFrame extends javax.swing.JFrame {
     private com.Product.swing.ButtonBadges buttonBadges1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private com.Product.GUI.textfield.TextField textField1;
-    private com.Product.GUI.textfield.TextField textField2;
+    private com.Product.GUI.textfield.TextField txt_MaKichThuoc;
+    private com.Product.GUI.textfield.TextField txt_TenKichThuoc;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class KichThuocRepository {
      public ArrayList<KichThuoc> getAll(){
         ArrayList<KichThuoc> list = new ArrayList<>();
-        String sql ="select id,ma_kich_thuoc,size from KichThuoc";
+        String sql ="select id,ma_kich_thuoc,size from KichThuoc where trang_thai = 1";
         try (Connection con = DBConnect.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();

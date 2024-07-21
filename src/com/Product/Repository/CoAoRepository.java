@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class CoAoRepository {
      public ArrayList<CoAo> getAll(){
         ArrayList<CoAo> list = new ArrayList<>();
-        String sql ="select id,ma_co_ao,ten_co_ao from CoAo";
+        String sql ="select id,ma_co_ao,ten_co_ao from CoAo where trang_thai = 1";
         try (Connection con = DBConnect.getConnection();
                 PreparedStatement ps = con.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();

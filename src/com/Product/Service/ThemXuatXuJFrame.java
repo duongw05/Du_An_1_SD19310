@@ -4,14 +4,20 @@
  */
 package com.Product.Service;
 
+import com.Product.Repository.ThuocTinhSanPhamRepository;
+import com.Product.entity.ThuocTinhSanPham;
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author ADMIN
  */
 public class ThemXuatXuJFrame extends javax.swing.JFrame {
-
+    private DefaultTableModel dtmThuocTinhSanPham;
+    private ThuocTinhSanPhamRepository thuocTinhSanPhamRepository = new ThuocTinhSanPhamRepository();
     /**
      * Creates new form ThemXuatXuJFrame
      */
@@ -21,6 +27,25 @@ public class ThemXuatXuJFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
+    private ThuocTinhSanPham getFormDataThuocTinhSP() {
+        if (txt_TenXuatXu.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Bạn chưa nhập tên thuộc tính", "Lỗi Nhập Liệu", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+
+        ThuocTinhSanPham ttsp = new ThuocTinhSanPham();
+        ttsp.setMaThuocTinhSanPham(txt_MaXuatXu.getText());
+        ttsp.setTenThuocTinhSanPham(txt_TenXuatXu.getText());
+
+        return ttsp;
+    }
+
+    private void showTableThuocTinhSanPham(ArrayList<ThuocTinhSanPham> lists) {
+        dtmThuocTinhSanPham.setRowCount(0);
+        AtomicInteger index = new AtomicInteger(1);
+        lists.forEach(s -> dtmThuocTinhSanPham.addRow(new Object[]{
+            index.getAndIncrement(), s.getMaThuocTinhSanPham(), s.getTenThuocTinhSanPham(),}));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,8 +57,8 @@ public class ThemXuatXuJFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        textField1 = new com.Product.GUI.textfield.TextField();
-        textField2 = new com.Product.GUI.textfield.TextField();
+        txt_MaXuatXu = new com.Product.GUI.textfield.TextField();
+        txt_TenXuatXu = new com.Product.GUI.textfield.TextField();
         buttonBadges1 = new com.Product.swing.ButtonBadges();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -44,11 +69,11 @@ public class ThemXuatXuJFrame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Thêm Xuất Xứ");
 
-        textField1.setText("###");
-        textField1.setEnabled(false);
-        textField1.setLabelText("Mã Xuất Xứ");
+        txt_MaXuatXu.setText("###");
+        txt_MaXuatXu.setEnabled(false);
+        txt_MaXuatXu.setLabelText("Mã Xuất Xứ");
 
-        textField2.setLabelText("Tên Xuất Xứ");
+        txt_TenXuatXu.setLabelText("Tên Xuất Xứ");
 
         buttonBadges1.setBackground(new java.awt.Color(255, 204, 51));
         buttonBadges1.setText("Thêm");
@@ -66,8 +91,8 @@ public class ThemXuatXuJFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(textField1, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
-                    .addComponent(textField2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(txt_MaXuatXu, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
+                    .addComponent(txt_TenXuatXu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(14, 14, 14))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(130, 130, 130)
@@ -84,9 +109,9 @@ public class ThemXuatXuJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_MaXuatXu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_TenXuatXu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(buttonBadges1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
@@ -108,8 +133,16 @@ public class ThemXuatXuJFrame extends javax.swing.JFrame {
 
     private void buttonBadges1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBadges1ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Thêm Thành Công");
-        this.dispose();
+        ThuocTinhSanPham ttsp = getFormDataThuocTinhSP();
+        if (ttsp != null) {
+            if(thuocTinhSanPhamRepository.insertMauSac(ttsp)) {
+                JOptionPane.showMessageDialog(null, "Thêm thuộc tính sản phẩm thành công");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Thêm thất bại");
+                this.dispose();
+            }
+        }
     }//GEN-LAST:event_buttonBadges1ActionPerformed
 
     /**
@@ -151,7 +184,7 @@ public class ThemXuatXuJFrame extends javax.swing.JFrame {
     private com.Product.swing.ButtonBadges buttonBadges1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private com.Product.GUI.textfield.TextField textField1;
-    private com.Product.GUI.textfield.TextField textField2;
+    private com.Product.GUI.textfield.TextField txt_MaXuatXu;
+    private com.Product.GUI.textfield.TextField txt_TenXuatXu;
     // End of variables declaration//GEN-END:variables
 }

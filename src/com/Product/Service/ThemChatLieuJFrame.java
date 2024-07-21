@@ -4,14 +4,21 @@
  */
 package com.Product.Service;
 
+import com.Product.Repository.ThuocTinhSanPhamRepository;
+import com.Product.entity.ThuocTinhSanPham;
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author ADMIN
  */
 public class ThemChatLieuJFrame extends javax.swing.JFrame {
-
+     private DefaultTableModel dtmThuocTinhSanPham;
+    private ThuocTinhSanPhamRepository thuocTinhSanPhamRepository = new ThuocTinhSanPhamRepository();
+    
     /**
      * Creates new form ThemChatLieuJFrame
      */
@@ -20,6 +27,26 @@ public class ThemChatLieuJFrame extends javax.swing.JFrame {
         setTitle("Thêm Chất Liệu");
         setLocationRelativeTo(null);
         
+    }
+    
+    private ThuocTinhSanPham getFormDataThuocTinhSP() {
+        if (txt_TenChatLieu.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Bạn chưa nhập tên thuộc tính", "Lỗi Nhập Liệu", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+
+        ThuocTinhSanPham ttsp = new ThuocTinhSanPham();
+        ttsp.setMaThuocTinhSanPham(txt_MaChatLieu.getText());
+        ttsp.setTenThuocTinhSanPham(txt_TenChatLieu.getText());
+
+        return ttsp;
+    }
+
+    private void showTableThuocTinhSanPham(ArrayList<ThuocTinhSanPham> lists) {
+        dtmThuocTinhSanPham.setRowCount(0);
+        AtomicInteger index = new AtomicInteger(1);
+        lists.forEach(s -> dtmThuocTinhSanPham.addRow(new Object[]{
+            index.getAndIncrement(), s.getMaThuocTinhSanPham(), s.getTenThuocTinhSanPham(),}));
     }
 
     /**
@@ -33,8 +60,8 @@ public class ThemChatLieuJFrame extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        textField1 = new com.Product.GUI.textfield.TextField();
-        textField2 = new com.Product.GUI.textfield.TextField();
+        txt_MaChatLieu = new com.Product.GUI.textfield.TextField();
+        txt_TenChatLieu = new com.Product.GUI.textfield.TextField();
         buttonBadges1 = new com.Product.swing.ButtonBadges();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -45,11 +72,11 @@ public class ThemChatLieuJFrame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Thêm Chất Liệu");
 
-        textField1.setText("###");
-        textField1.setEnabled(false);
-        textField1.setLabelText("Mã Chất Liệu");
+        txt_MaChatLieu.setText("###");
+        txt_MaChatLieu.setEnabled(false);
+        txt_MaChatLieu.setLabelText("Mã Chất Liệu");
 
-        textField2.setLabelText("Tên chất liệu");
+        txt_TenChatLieu.setLabelText("Tên chất liệu");
 
         buttonBadges1.setBackground(new java.awt.Color(255, 204, 51));
         buttonBadges1.setText("Thêm");
@@ -69,8 +96,8 @@ public class ThemChatLieuJFrame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(textField1, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
-                            .addComponent(textField2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(txt_MaChatLieu, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                            .addComponent(txt_TenChatLieu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(137, 137, 137)
                         .addComponent(buttonBadges1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -86,9 +113,9 @@ public class ThemChatLieuJFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(48, 48, 48)
-                .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_MaChatLieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txt_TenChatLieu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonBadges1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
@@ -110,8 +137,16 @@ public class ThemChatLieuJFrame extends javax.swing.JFrame {
 
     private void buttonBadges1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBadges1ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(this, "Thêm Thành Công");
-        this.dispose();
+         ThuocTinhSanPham ttsp = getFormDataThuocTinhSP();
+        if (ttsp != null) {
+            if(thuocTinhSanPhamRepository.insertChatLieu(ttsp)) {
+                JOptionPane.showMessageDialog(null, "Thêm thuộc tính sản phẩm thành công");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Thêm thất bại");
+                this.dispose();
+            }
+        }
     }//GEN-LAST:event_buttonBadges1ActionPerformed
 
     /**
@@ -153,7 +188,7 @@ public class ThemChatLieuJFrame extends javax.swing.JFrame {
     private com.Product.swing.ButtonBadges buttonBadges1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private com.Product.GUI.textfield.TextField textField1;
-    private com.Product.GUI.textfield.TextField textField2;
+    private com.Product.GUI.textfield.TextField txt_MaChatLieu;
+    private com.Product.GUI.textfield.TextField txt_TenChatLieu;
     // End of variables declaration//GEN-END:variables
 }

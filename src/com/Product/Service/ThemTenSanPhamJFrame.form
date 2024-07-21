@@ -91,14 +91,14 @@
       <SubComponents>
         <Component class="com.Product.GUI.textfield.TextField" name="txtTenThuocTinh">
           <Properties>
-            <Property name="labelText" type="java.lang.String" value="T&#xea;n Thu&#x1ed9;c T&#xed;nh"/>
+            <Property name="labelText" type="java.lang.String" value="T&#xea;n S&#x1ea3;n Ph&#x1ea9;m"/>
           </Properties>
         </Component>
         <Component class="com.Product.GUI.textfield.TextField" name="txtMaThuocTinh">
           <Properties>
             <Property name="text" type="java.lang.String" value="###"/>
             <Property name="enabled" type="boolean" value="false"/>
-            <Property name="labelText" type="java.lang.String" value="M&#xe3; Thu&#x1ed9;c T&#xed;nh"/>
+            <Property name="labelText" type="java.lang.String" value="M&#xe3; S&#x1ea3;n Ph&#x1ea9;m"/>
           </Properties>
         </Component>
         <Component class="com.Product.swing.ButtonBadges" name="btnThemThuocTinh">
