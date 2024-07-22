@@ -63,7 +63,7 @@ public class ThemDoDayJFrame extends javax.swing.JFrame {
         txt_TenDoDay = new com.Product.GUI.textfield.TextField();
         buttonBadges1 = new com.Product.swing.ButtonBadges();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));

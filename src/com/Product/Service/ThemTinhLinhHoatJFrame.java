@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ThemTinhLinhHoatJFrame extends javax.swing.JFrame {
         private DefaultTableModel dtmThuocTinhSanPham;
-    private ThuocTinhSanPhamRepository thuocTinhSanPhamRepository;
+    private ThuocTinhSanPhamRepository thuocTinhSanPhamRepository = new ThuocTinhSanPhamRepository();
     /**
      * Creates new form ThemTinhLinhHoat
      */
@@ -62,7 +62,7 @@ public class ThemTinhLinhHoatJFrame extends javax.swing.JFrame {
         txt_TenPhongCach = new com.Product.GUI.textfield.TextField();
         btn_Them = new com.Product.swing.ButtonBadges();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setAutoscrolls(true);

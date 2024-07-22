@@ -223,7 +223,7 @@ public class SanPhamChiTietRepository {
         }
         return lists;
     }
-    
+
     public ArrayList<SanPhamChiTietRespone> getAllGiamDan() {
         String sql = "SELECT dbo.SanPhamChiTiet.id, \n"
                 + "       dbo.SanPhamChiTiet.ma_san_pham_chi_tiet, \n"
@@ -251,7 +251,6 @@ public class SanPhamChiTietRepository {
                 + "INNER JOIN dbo.TinhLinhHoat ON dbo.SanPhamChiTiet.id_tinh_linh_hoat = dbo.TinhLinhHoat.id \n"
                 + "ORDER BY dbo.SanPhamChiTiet.ngay_tao DESC";
 
-
         ArrayList<SanPhamChiTietRespone> lists = new ArrayList<>();
         try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
             ResultSet rs = ps.executeQuery();
@@ -266,7 +265,263 @@ public class SanPhamChiTietRepository {
         }
         return lists;
     }
+
+    public ArrayList<SanPhamChiTietRespone> locTheoTenSanPham(String tenSanPham) {
+        String sql = "SELECT dbo.SanPhamChiTiet.id, \n"
+                + "       dbo.SanPhamChiTiet.ma_san_pham_chi_tiet, \n"
+                + "       dbo.SanPham.ten_san_pham, \n"
+                + "       dbo.ThuongHieu.ten_thuong_hieu, \n"
+                + "       dbo.XuatXu.ten_nuoc, \n"
+                + "       dbo.MauSac.ten_mau, \n"
+                + "       dbo.KichThuoc.size, \n"
+                + "       dbo.ChatLieu.ten_chat_lieu, \n"
+                + "       dbo.CoAo.ten_co_ao, \n"
+                + "       dbo.DoDay.ten_do_day, \n"
+                + "       dbo.TinhLinhHoat.ten_tinh_linh_hoat, \n"
+                + "       dbo.SanPhamChiTiet.gia_ban, \n"
+                + "       dbo.SanPhamChiTiet.so_luong_ton, \n"
+                + "       dbo.SanPhamChiTiet.trang_thai \n"
+                + "FROM dbo.SanPhamChiTiet \n"
+                + "INNER JOIN dbo.SanPham ON dbo.SanPhamChiTiet.id_san_pham = dbo.SanPham.id\n"
+                + "INNER JOIN dbo.ThuongHieu ON dbo.SanPhamChiTiet.id_thuong_hieu = dbo.ThuongHieu.id \n"
+                + "INNER JOIN dbo.XuatXu ON dbo.SanPhamChiTiet.id_xuat_xu = dbo.XuatXu.id \n"
+                + "INNER JOIN dbo.MauSac ON dbo.SanPhamChiTiet.id_mau_sac = dbo.MauSac.id \n"
+                + "INNER JOIN dbo.KichThuoc ON dbo.SanPhamChiTiet.id_kich_thuoc = dbo.KichThuoc.id \n"
+                + "INNER JOIN dbo.ChatLieu ON dbo.SanPhamChiTiet.id_chat_lieu = dbo.ChatLieu.id \n"
+                + "INNER JOIN dbo.CoAo ON dbo.SanPhamChiTiet.id_co_ao = dbo.CoAo.id \n"
+                + "INNER JOIN dbo.DoDay ON dbo.SanPhamChiTiet.id_do_day = dbo.DoDay.id \n"
+                + "INNER JOIN dbo.TinhLinhHoat ON dbo.SanPhamChiTiet.id_tinh_linh_hoat = dbo.TinhLinhHoat.id \n"
+                + "WHERE dbo.SanPham.ten_san_pham LIKE ?"; // Thêm điều kiện WHERE để lọc theo tên sản phẩm
+
+        ArrayList<SanPhamChiTietRespone> lists = new ArrayList<>();
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, "%" + tenSanPham + "%"); // Thay đổi tham số đầu vào cho LIKE
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                lists.add(new SanPhamChiTietRespone(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                        rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
+                        rs.getString(9), rs.getString(10), rs.getString(11), rs.getDouble(12),
+                        rs.getInt(13), rs.getBoolean(14)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace(System.out); // nem loi khi xay ra 
+        }
+        return lists;
+    }
+
+    public ArrayList<SanPhamChiTietRespone> locTheoTenTinhLinhHoat(String tenTinhLinhHoat) {
+        String sql = "SELECT dbo.SanPhamChiTiet.id, \n"
+                + "       dbo.SanPhamChiTiet.ma_san_pham_chi_tiet, \n"
+                + "       dbo.SanPham.ten_san_pham, \n"
+                + "       dbo.ThuongHieu.ten_thuong_hieu, \n"
+                + "       dbo.XuatXu.ten_nuoc, \n"
+                + "       dbo.MauSac.ten_mau, \n"
+                + "       dbo.KichThuoc.size, \n"
+                + "       dbo.ChatLieu.ten_chat_lieu, \n"
+                + "       dbo.CoAo.ten_co_ao, \n"
+                + "       dbo.DoDay.ten_do_day, \n"
+                + "       dbo.TinhLinhHoat.ten_tinh_linh_hoat, \n"
+                + "       dbo.SanPhamChiTiet.gia_ban, \n"
+                + "       dbo.SanPhamChiTiet.so_luong_ton, \n"
+                + "       dbo.SanPhamChiTiet.trang_thai \n"
+                + "FROM dbo.SanPhamChiTiet \n"
+                + "INNER JOIN dbo.SanPham ON dbo.SanPhamChiTiet.id_san_pham = dbo.SanPham.id\n"
+                + "INNER JOIN dbo.ThuongHieu ON dbo.SanPhamChiTiet.id_thuong_hieu = dbo.ThuongHieu.id \n"
+                + "INNER JOIN dbo.XuatXu ON dbo.SanPhamChiTiet.id_xuat_xu = dbo.XuatXu.id \n"
+                + "INNER JOIN dbo.MauSac ON dbo.SanPhamChiTiet.id_mau_sac = dbo.MauSac.id \n"
+                + "INNER JOIN dbo.KichThuoc ON dbo.SanPhamChiTiet.id_kich_thuoc = dbo.KichThuoc.id \n"
+                + "INNER JOIN dbo.ChatLieu ON dbo.SanPhamChiTiet.id_chat_lieu = dbo.ChatLieu.id \n"
+                + "INNER JOIN dbo.CoAo ON dbo.SanPhamChiTiet.id_co_ao = dbo.CoAo.id \n"
+                + "INNER JOIN dbo.DoDay ON dbo.SanPhamChiTiet.id_do_day = dbo.DoDay.id \n"
+                + "INNER JOIN dbo.TinhLinhHoat ON dbo.SanPhamChiTiet.id_tinh_linh_hoat = dbo.TinhLinhHoat.id \n"
+                + "WHERE dbo.TinhLinhHoat.ten_tinh_linh_hoat LIKE ?"; // Thêm điều kiện WHERE để lọc theo tên tính linh hoạt
+
+        ArrayList<SanPhamChiTietRespone> lists = new ArrayList<>();
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, "%" + tenTinhLinhHoat + "%"); // Thay đổi tham số đầu vào cho LIKE
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                lists.add(new SanPhamChiTietRespone(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                        rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
+                        rs.getString(9), rs.getString(10), rs.getString(11), rs.getDouble(12),
+                        rs.getInt(13), rs.getBoolean(14)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace(System.out); // nem loi khi xay ra 
+        }
+        return lists;
+    }
+
+    public ArrayList<SanPhamChiTietRespone> locTheoTenThuongHieu(String tenThuongHieu) {
+        String sql = "SELECT dbo.SanPhamChiTiet.id, \n"
+                + "       dbo.SanPhamChiTiet.ma_san_pham_chi_tiet, \n"
+                + "       dbo.SanPham.ten_san_pham, \n"
+                + "       dbo.ThuongHieu.ten_thuong_hieu, \n"
+                + "       dbo.XuatXu.ten_nuoc, \n"
+                + "       dbo.MauSac.ten_mau, \n"
+                + "       dbo.KichThuoc.size, \n"
+                + "       dbo.ChatLieu.ten_chat_lieu, \n"
+                + "       dbo.CoAo.ten_co_ao, \n"
+                + "       dbo.DoDay.ten_do_day, \n"
+                + "       dbo.TinhLinhHoat.ten_tinh_linh_hoat, \n"
+                + "       dbo.SanPhamChiTiet.gia_ban, \n"
+                + "       dbo.SanPhamChiTiet.so_luong_ton, \n"
+                + "       dbo.SanPhamChiTiet.trang_thai \n"
+                + "FROM dbo.SanPhamChiTiet \n"
+                + "INNER JOIN dbo.SanPham ON dbo.SanPhamChiTiet.id_san_pham = dbo.SanPham.id\n"
+                + "INNER JOIN dbo.ThuongHieu ON dbo.SanPhamChiTiet.id_thuong_hieu = dbo.ThuongHieu.id \n"
+                + "INNER JOIN dbo.XuatXu ON dbo.SanPhamChiTiet.id_xuat_xu = dbo.XuatXu.id \n"
+                + "INNER JOIN dbo.MauSac ON dbo.SanPhamChiTiet.id_mau_sac = dbo.MauSac.id \n"
+                + "INNER JOIN dbo.KichThuoc ON dbo.SanPhamChiTiet.id_kich_thuoc = dbo.KichThuoc.id \n"
+                + "INNER JOIN dbo.ChatLieu ON dbo.SanPhamChiTiet.id_chat_lieu = dbo.ChatLieu.id \n"
+                + "INNER JOIN dbo.CoAo ON dbo.SanPhamChiTiet.id_co_ao = dbo.CoAo.id \n"
+                + "INNER JOIN dbo.DoDay ON dbo.SanPhamChiTiet.id_do_day = dbo.DoDay.id \n"
+                + "INNER JOIN dbo.TinhLinhHoat ON dbo.SanPhamChiTiet.id_tinh_linh_hoat = dbo.TinhLinhHoat.id \n"
+                + "WHERE dbo.ThuongHieu.ten_thuong_hieu LIKE ?"; // Thêm điều kiện WHERE để lọc theo tên thương hiệu
+
+        ArrayList<SanPhamChiTietRespone> lists = new ArrayList<>();
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, "%" + tenThuongHieu + "%"); // Thay đổi tham số đầu vào cho LIKE
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                lists.add(new SanPhamChiTietRespone(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                        rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
+                        rs.getString(9), rs.getString(10), rs.getString(11), rs.getDouble(12),
+                        rs.getInt(13), rs.getBoolean(14)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace(System.out); // nem loi khi xay ra 
+        }
+        return lists;
+    }
+
+    public ArrayList<SanPhamChiTietRespone> locTheoTenXuatXu(String xuatXu) {
+        String sql = "SELECT dbo.SanPhamChiTiet.id, \n"
+                + "       dbo.SanPhamChiTiet.ma_san_pham_chi_tiet, \n"
+                + "       dbo.SanPham.ten_san_pham, \n"
+                + "       dbo.ThuongHieu.ten_thuong_hieu, \n"
+                + "       dbo.XuatXu.ten_nuoc, \n"
+                + "       dbo.MauSac.ten_mau, \n"
+                + "       dbo.KichThuoc.size, \n"
+                + "       dbo.ChatLieu.ten_chat_lieu, \n"
+                + "       dbo.CoAo.ten_co_ao, \n"
+                + "       dbo.DoDay.ten_do_day, \n"
+                + "       dbo.TinhLinhHoat.ten_tinh_linh_hoat, \n"
+                + "       dbo.SanPhamChiTiet.gia_ban, \n"
+                + "       dbo.SanPhamChiTiet.so_luong_ton, \n"
+                + "       dbo.SanPhamChiTiet.trang_thai \n"
+                + "FROM dbo.SanPhamChiTiet \n"
+                + "INNER JOIN dbo.SanPham ON dbo.SanPhamChiTiet.id_san_pham = dbo.SanPham.id\n"
+                + "INNER JOIN dbo.ThuongHieu ON dbo.SanPhamChiTiet.id_thuong_hieu = dbo.ThuongHieu.id \n"
+                + "INNER JOIN dbo.XuatXu ON dbo.SanPhamChiTiet.id_xuat_xu = dbo.XuatXu.id \n"
+                + "INNER JOIN dbo.MauSac ON dbo.SanPhamChiTiet.id_mau_sac = dbo.MauSac.id \n"
+                + "INNER JOIN dbo.KichThuoc ON dbo.SanPhamChiTiet.id_kich_thuoc = dbo.KichThuoc.id \n"
+                + "INNER JOIN dbo.ChatLieu ON dbo.SanPhamChiTiet.id_chat_lieu = dbo.ChatLieu.id \n"
+                + "INNER JOIN dbo.CoAo ON dbo.SanPhamChiTiet.id_co_ao = dbo.CoAo.id \n"
+                + "INNER JOIN dbo.DoDay ON dbo.SanPhamChiTiet.id_do_day = dbo.DoDay.id \n"
+                + "INNER JOIN dbo.TinhLinhHoat ON dbo.SanPhamChiTiet.id_tinh_linh_hoat = dbo.TinhLinhHoat.id \n"
+                + "WHERE dbo.XuatXu.ten_nuoc LIKE ?"; // Thêm điều kiện WHERE để lọc theo xuất xứ
+
+        ArrayList<SanPhamChiTietRespone> lists = new ArrayList<>();
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, "%" + xuatXu + "%"); // Thay đổi tham số đầu vào cho LIKE
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                lists.add(new SanPhamChiTietRespone(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                        rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
+                        rs.getString(9), rs.getString(10), rs.getString(11), rs.getDouble(12),
+                        rs.getInt(13), rs.getBoolean(14)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace(System.out); // nem loi khi xay ra 
+        }
+        return lists;
+    }
     
+    public ArrayList<SanPhamChiTietRespone> giaTangDan() {
+    String sql = "SELECT dbo.SanPhamChiTiet.id, \n"
+            + "       dbo.SanPhamChiTiet.ma_san_pham_chi_tiet, \n"
+            + "       dbo.SanPham.ten_san_pham, \n"
+            + "       dbo.ThuongHieu.ten_thuong_hieu, \n"
+            + "       dbo.XuatXu.ten_nuoc, \n"
+            + "       dbo.MauSac.ten_mau, \n"
+            + "       dbo.KichThuoc.size, \n"
+            + "       dbo.ChatLieu.ten_chat_lieu, \n"
+            + "       dbo.CoAo.ten_co_ao, \n"
+            + "       dbo.DoDay.ten_do_day, \n"
+            + "       dbo.TinhLinhHoat.ten_tinh_linh_hoat, \n"
+            + "       dbo.SanPhamChiTiet.gia_ban, \n"
+            + "       dbo.SanPhamChiTiet.so_luong_ton, \n"
+            + "       dbo.SanPhamChiTiet.trang_thai \n"
+            + "FROM dbo.SanPhamChiTiet \n"
+            + "INNER JOIN dbo.SanPham ON dbo.SanPhamChiTiet.id_san_pham = dbo.SanPham.id\n"
+            + "INNER JOIN dbo.ThuongHieu ON dbo.SanPhamChiTiet.id_thuong_hieu = dbo.ThuongHieu.id \n"
+            + "INNER JOIN dbo.XuatXu ON dbo.SanPhamChiTiet.id_xuat_xu = dbo.XuatXu.id \n"
+            + "INNER JOIN dbo.MauSac ON dbo.SanPhamChiTiet.id_mau_sac = dbo.MauSac.id \n"
+            + "INNER JOIN dbo.KichThuoc ON dbo.SanPhamChiTiet.id_kich_thuoc = dbo.KichThuoc.id \n"
+            + "INNER JOIN dbo.ChatLieu ON dbo.SanPhamChiTiet.id_chat_lieu = dbo.ChatLieu.id \n"
+            + "INNER JOIN dbo.CoAo ON dbo.SanPhamChiTiet.id_co_ao = dbo.CoAo.id \n"
+            + "INNER JOIN dbo.DoDay ON dbo.SanPhamChiTiet.id_do_day = dbo.DoDay.id \n"
+            + "INNER JOIN dbo.TinhLinhHoat ON dbo.SanPhamChiTiet.id_tinh_linh_hoat = dbo.TinhLinhHoat.id \n"
+            + "ORDER BY dbo.SanPhamChiTiet.gia_ban ASC"; // Sắp xếp theo giá bán từ thấp đến cao
+
+    ArrayList<SanPhamChiTietRespone> lists = new ArrayList<>();
+    try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            lists.add(new SanPhamChiTietRespone(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                    rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
+                    rs.getString(9), rs.getString(10), rs.getString(11), rs.getDouble(12),
+                    rs.getInt(13), rs.getBoolean(14)));
+        }
+    } catch (Exception e) {
+        e.printStackTrace(System.out); // nem loi khi xay ra 
+    }
+    return lists;
+}
     
+    public ArrayList<SanPhamChiTietRespone> giaGiamDan() {
+    String sql = "SELECT dbo.SanPhamChiTiet.id, \n"
+            + "       dbo.SanPhamChiTiet.ma_san_pham_chi_tiet, \n"
+            + "       dbo.SanPham.ten_san_pham, \n"
+            + "       dbo.ThuongHieu.ten_thuong_hieu, \n"
+            + "       dbo.XuatXu.ten_nuoc, \n"
+            + "       dbo.MauSac.ten_mau, \n"
+            + "       dbo.KichThuoc.size, \n"
+            + "       dbo.ChatLieu.ten_chat_lieu, \n"
+            + "       dbo.CoAo.ten_co_ao, \n"
+            + "       dbo.DoDay.ten_do_day, \n"
+            + "       dbo.TinhLinhHoat.ten_tinh_linh_hoat, \n"
+            + "       dbo.SanPhamChiTiet.gia_ban, \n"
+            + "       dbo.SanPhamChiTiet.so_luong_ton, \n"
+            + "       dbo.SanPhamChiTiet.trang_thai \n"
+            + "FROM dbo.SanPhamChiTiet \n"
+            + "INNER JOIN dbo.SanPham ON dbo.SanPhamChiTiet.id_san_pham = dbo.SanPham.id\n"
+            + "INNER JOIN dbo.ThuongHieu ON dbo.SanPhamChiTiet.id_thuong_hieu = dbo.ThuongHieu.id \n"
+            + "INNER JOIN dbo.XuatXu ON dbo.SanPhamChiTiet.id_xuat_xu = dbo.XuatXu.id \n"
+            + "INNER JOIN dbo.MauSac ON dbo.SanPhamChiTiet.id_mau_sac = dbo.MauSac.id \n"
+            + "INNER JOIN dbo.KichThuoc ON dbo.SanPhamChiTiet.id_kich_thuoc = dbo.KichThuoc.id \n"
+            + "INNER JOIN dbo.ChatLieu ON dbo.SanPhamChiTiet.id_chat_lieu = dbo.ChatLieu.id \n"
+            + "INNER JOIN dbo.CoAo ON dbo.SanPhamChiTiet.id_co_ao = dbo.CoAo.id \n"
+            + "INNER JOIN dbo.DoDay ON dbo.SanPhamChiTiet.id_do_day = dbo.DoDay.id \n"
+            + "INNER JOIN dbo.TinhLinhHoat ON dbo.SanPhamChiTiet.id_tinh_linh_hoat = dbo.TinhLinhHoat.id \n"
+            + "ORDER BY dbo.SanPhamChiTiet.gia_ban DESC"; // Sắp xếp theo giá bán giảm dần
+
+    ArrayList<SanPhamChiTietRespone> lists = new ArrayList<>();
+    try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            lists.add(new SanPhamChiTietRespone(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                    rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
+                    rs.getString(9), rs.getString(10), rs.getString(11), rs.getDouble(12),
+                    rs.getInt(13), rs.getBoolean(14)));
+        }
+    } catch (Exception e) {
+        e.printStackTrace(System.out); // nem loi khi xay ra 
+    }
+    return lists;
+}
+
+
 
 }
