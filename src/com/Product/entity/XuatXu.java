@@ -25,4 +25,11 @@ public class XuatXu {
     private String ma;
 
     private String ten;
+
+    @Override
+    public String toString() {
+        return ten;
+    }
+    
+    
 }

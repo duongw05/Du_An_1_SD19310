@@ -4,8 +4,11 @@
  */
 package com.Product.Service;
 
+import com.Product.Repository.DoDayRepository;
 import com.Product.Repository.ThuocTinhSanPhamRepository;
 import com.Product.entity.ThuocTinhSanPham;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.JOptionPane;
@@ -18,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 public class ThemDoDayJFrame extends javax.swing.JFrame {
     private DefaultTableModel dtmThuocTinhSanPham;
     private ThuocTinhSanPhamRepository thuocTinhSanPhamRepository = new ThuocTinhSanPhamRepository();
+    private DoDayRepository repoDoDay = new DoDayRepository();
     /**
      * Creates new form ThemDoDayJFrame
      */
@@ -25,12 +29,42 @@ public class ThemDoDayJFrame extends javax.swing.JFrame {
         initComponents();
         setTitle("Thêm Độ Dày");
         setLocationRelativeTo(null);
+       
     }
+    
+//    private String capitalizeFirstLetter(String input) {
+//    String[] words = input.trim().split("\\s+");
+//    StringBuilder capitalizedText = new StringBuilder();
+//    for (String word : words) {
+//        if (word.length() > 0) {
+//            capitalizedText.append(word.substring(0, 1).toUpperCase())
+//                           .append(word.substring(1).toLowerCase())
+//                           .append(" ");
+//        }
+//    }
+//    return capitalizedText.toString().trim();
+//}
+//    
+//    private void setupKeyListener() {
+//    txt_TenDoDay.addKeyListener(new KeyAdapter() {
+//        @Override
+//        public void keyReleased(KeyEvent e) {
+//            String text = capitalizeFirstLetter(txt_TenDoDay.getText());
+//            txt_TenDoDay.setText(text);
+//        }
+//    });
+//}
     
     
      private ThuocTinhSanPham getFormDataThuocTinhSP() {
+         String tenDoDay = txt_TenDoDay.getText().trim();
         if (txt_TenDoDay.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Bạn chưa nhập tên thuộc tính", "Lỗi Nhập Liệu", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+        
+        if(repoDoDay.isDoDayExist(tenDoDay)){
+            JOptionPane.showMessageDialog(null, "Tên thuộc tính đã tồn tại", "Lỗi Nhập Liệu", JOptionPane.ERROR_MESSAGE);
             return null;
         }
 

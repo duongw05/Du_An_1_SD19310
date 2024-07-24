@@ -35,4 +35,6 @@ public class SanPham {
     private boolean trangThai;
     private Date ngayTao;
     
+    
+    
 }

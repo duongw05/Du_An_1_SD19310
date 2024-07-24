@@ -7,6 +7,8 @@ package com.Product.Service;
 import com.Product.Repository.MauSacRepository;
 import com.Product.Repository.ThuocTinhSanPhamRepository;
 import com.Product.entity.ThuocTinhSanPham;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.JOptionPane;
@@ -19,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 public class ThemMauSacJFrame extends javax.swing.JFrame {
         private DefaultTableModel dtmThuocTinhSanPham;
     private ThuocTinhSanPhamRepository thuocTinhSanPhamRepository = new ThuocTinhSanPhamRepository();
+    private MauSacRepository repoMauSac = new MauSacRepository();
 
     /**
      * Creates new form ThemMauSacJFrame
@@ -27,9 +30,32 @@ public class ThemMauSacJFrame extends javax.swing.JFrame {
         initComponents();
         setTitle("Thêm Màu Sắc");
         setLocationRelativeTo(null);
-        thuocTinhSanPhamRepository = new ThuocTinhSanPhamRepository();
+        
     }
     
+//    private String capitalizeFirstLetter(String input) {
+//    String[] words = input.trim().split("\\s+");
+//    StringBuilder capitalizedText = new StringBuilder();
+//    for (String word : words) {
+//        if (word.length() > 0) {
+//            capitalizedText.append(word.substring(0, 1).toUpperCase())
+//                           .append(word.substring(1).toLowerCase())
+//                           .append(" ");
+//        }
+//    }
+//    return capitalizedText.toString().trim();
+//}
+//    
+//    private void setupKeyListener() {
+//    txt_TenMau.addKeyListener(new KeyAdapter() {
+//        @Override
+//        public void keyReleased(KeyEvent e) {
+//            String text = capitalizeFirstLetter(txt_TenMau.getText());
+//            txt_TenMau.setText(text);
+//        }
+//    });
+//}
+//    
      
      private ThuocTinhSanPham getFormDataThuocTinhSP() {
         if (txt_MaMauSac.getText().trim().isEmpty()) {
@@ -44,12 +70,12 @@ public class ThemMauSacJFrame extends javax.swing.JFrame {
         return ttsp;
     }
 
-    private void showTableThuocTinhSanPham(ArrayList<ThuocTinhSanPham> lists) {
-        dtmThuocTinhSanPham.setRowCount(0);
-        AtomicInteger index = new AtomicInteger(1);
-        lists.forEach(s -> dtmThuocTinhSanPham.addRow(new Object[]{
-            index.getAndIncrement(), s.getMaThuocTinhSanPham(), s.getTenThuocTinhSanPham(),}));
-    }
+//    private void showTableThuocTinhSanPham(ArrayList<ThuocTinhSanPham> lists) {
+//        dtmThuocTinhSanPham.setRowCount(0);
+//        AtomicInteger index = new AtomicInteger(1);
+//        lists.forEach(s -> dtmThuocTinhSanPham.addRow(new Object[]{
+//            index.getAndIncrement(), s.getMaThuocTinhSanPham(), s.getTenThuocTinhSanPham(),}));
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

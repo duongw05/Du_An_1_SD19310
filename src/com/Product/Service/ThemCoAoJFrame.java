@@ -9,6 +9,8 @@ import com.Product.Repository.ThuocTinhSanPhamRepository;
 import com.Product.entity.CoAo;
 import com.Product.entity.ThuocTinhSanPham;
 import com.Product.form.SanPhamForm;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -33,7 +35,31 @@ public class ThemCoAoJFrame extends javax.swing.JFrame {
         initComponents();
         setTitle("Thêm Cổ Áo");
         setLocationRelativeTo(null);
+       
     }
+    
+//    private String capitalizeFirstLetter(String input) {
+//    String[] words = input.trim().split("\\s+");
+//    StringBuilder capitalizedText = new StringBuilder();
+//    for (String word : words) {
+//        if (word.length() > 0) {
+//            capitalizedText.append(word.substring(0, 1).toUpperCase())
+//                           .append(word.substring(1).toLowerCase())
+//                           .append(" ");
+//        }
+//    }
+//    return capitalizedText.toString().trim();
+//}
+//    
+//    private void setupKeyListener() {
+//    txt_TenCoAo.addKeyListener(new KeyAdapter() {
+//        @Override
+//        public void keyReleased(KeyEvent e) {
+//            String text = capitalizeFirstLetter(txt_TenCoAo.getText());
+//            txt_TenCoAo.setText(text);
+//        }
+//    });
+//}
 
     
      private ThuocTinhSanPham getFormDataThuocTinhSP() {

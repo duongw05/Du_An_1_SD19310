@@ -50,7 +50,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
-        <Container class="javax.swing.JPanel" name="jPanel2">
+        <Container class="javax.swing.JPanel" name="jpn_SanPham">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -808,7 +808,7 @@
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="buttonBadges3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="1699" max="32767" attributes="0"/>
+                          <EmptySpace pref="1762" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1076,7 +1076,7 @@
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
@@ -1098,18 +1098,29 @@
                                               <Component id="txt_TimKiemSPCT" min="-2" pref="490" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
-                                      <Component id="lblQRCode" min="-2" pref="98" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="155" max="-2" attributes="0"/>
+                                      <Component id="lblQRCode" min="-2" pref="133" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                                  <Component id="btn_XuatExcelSPCT" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jCheckBoxCustom1" min="-2" pref="107" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="574" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                                          <Component id="btn_XuatExcelSPCT" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="jCheckBoxCustom1" min="-2" pref="107" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="529" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
+                                          <Component id="btn_ThemMoiSPCT3" min="-2" pref="118" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="btn_Quet_QR3" min="-2" pref="122" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="217" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="XuatBarcode" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btn_LamMoiSPCT3" min="-2" pref="106" max="-2" attributes="0"/>
                                       <Component id="cbb_LocTheoGia" min="-2" pref="272" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -1117,33 +1128,19 @@
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="-2" pref="107" max="-2" attributes="0"/>
-                                  <Component id="btn_ThemMoiSPCT3" min="-2" pref="118" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="128" max="-2" attributes="0"/>
-                                  <Component id="btn_Quet_QR3" min="-2" pref="122" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
-                                  <Component id="btn_LamMoiSPCT3" min="-2" pref="106" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane7" min="-2" pref="1096" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <EmptySpace pref="342" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                          <Component id="jScrollPane7" min="-2" pref="1096" max="-2" attributes="0"/>
+                          <EmptySpace pref="336" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="lblQRCode" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel26" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblQRCode" alignment="3" min="-2" pref="89" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
@@ -1165,9 +1162,8 @@
                               <Component id="btn_ThemMoiSPCT3" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btn_Quet_QR3" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btn_LamMoiSPCT3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="XuatBarcode" alignment="1" pref="40" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                          <EmptySpace pref="41" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jCheckBoxCustom1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btn_XuatExcelSPCT" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1223,6 +1219,7 @@
                       </Properties>
                       <Events>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbl_San_Pham_Chi_TietMouseClicked"/>
+                        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbl_San_Pham_Chi_TietMouseEntered"/>
                       </Events>
                     </Component>
                   </SubComponents>
@@ -1267,7 +1264,7 @@
                               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                               <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="cbb_LocSanPham" min="-2" pref="130" max="-2" attributes="0"/>
+                              <Component id="cbb_LocChatLieu" min="-2" pref="130" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Component id="jLabel29" min="-2" pref="76" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -1293,7 +1290,7 @@
                                       <Group type="103" groupAlignment="1" attributes="0">
                                           <Component id="jLabel29" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="cbb_LocThuongHieu" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="cbb_LocSanPham" alignment="1" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cbb_LocChatLieu" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel28" alignment="1" min="-2" pref="16" max="-2" attributes="0"/>
                                           <Component id="jLabel30" alignment="1" min="-2" max="-2" attributes="0"/>
                                           <Component id="cbb_LocTinhLinhHoat" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -1322,6 +1319,7 @@
                         </Property>
                       </Properties>
                       <Events>
+                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbb_LocThuongHieuItemStateChanged"/>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbb_LocThuongHieuActionPerformed"/>
                       </Events>
                     </Component>
@@ -1334,10 +1332,11 @@
                         </Property>
                       </Properties>
                       <Events>
+                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbb_LocXuatXuItemStateChanged"/>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbb_LocXuatXuActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="com.Product.GUI.Combobox" name="cbb_LocSanPham">
+                    <Component class="com.Product.GUI.Combobox" name="cbb_LocChatLieu">
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="2">
@@ -1347,7 +1346,8 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbb_LocSanPhamActionPerformed"/>
+                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbb_LocChatLieuItemStateChanged"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbb_LocChatLieuActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="com.Product.GUI.Combobox" name="cbb_LocTinhLinhHoat">
@@ -1360,6 +1360,7 @@
                         </Property>
                       </Properties>
                       <Events>
+                        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbb_LocTinhLinhHoatItemStateChanged"/>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbb_LocTinhLinhHoatActionPerformed"/>
                       </Events>
                     </Component>
@@ -1368,7 +1369,7 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="12" style="1"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="S&#x1ea3;n ph&#x1ea9;m"/>
+                        <Property name="text" type="java.lang.String" value="Ch&#x1ea5;t Li&#x1ec7;u"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel29">
@@ -1450,6 +1451,9 @@
                       <Font name="Segoe UI" size="12" style="1"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_LamMoiSPCT3ActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="com.Product.GUI.Combobox" name="cbb_LocTheoGia">
                   <Properties>
@@ -1461,6 +1465,7 @@
                     </Property>
                   </Properties>
                   <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cbb_LocTheoGiaItemStateChanged"/>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbb_LocTheoGiaActionPerformed"/>
                   </Events>
                 </Component>
@@ -1503,24 +1508,7 @@
                     <Property name="text" type="java.lang.String" value="ALL"/>
                   </Properties>
                 </Component>
-                <Component class="com.Product.swing.ButtonBadges" name="XuatBarcode">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="33" green="ff" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t Barcode"/>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="14" style="1"/>
-                    </Property>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="XuatBarcodeActionPerformed"/>
-                  </Events>
-                </Component>
                 <Component class="javax.swing.JLabel" name="lblQRCode">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="QR"/>
-                  </Properties>
                 </Component>
               </SubComponents>
             </Container>
@@ -1568,7 +1556,7 @@
                       <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jPanel9" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="1629" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="1692" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

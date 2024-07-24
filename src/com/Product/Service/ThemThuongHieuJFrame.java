@@ -5,7 +5,10 @@
 package com.Product.Service;
 
 import com.Product.Repository.ThuocTinhSanPhamRepository;
+import com.Product.Repository.ThuongHieuRepository;
 import com.Product.entity.ThuocTinhSanPham;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.JOptionPane;
@@ -18,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 public class ThemThuongHieuJFrame extends javax.swing.JFrame {
     private DefaultTableModel dtmThuocTinhSanPham;
     private ThuocTinhSanPhamRepository thuocTinhSanPhamRepository = new ThuocTinhSanPhamRepository();
+    private ThuongHieuRepository repoThuongHieu = new ThuongHieuRepository();
     /**
      * Creates new form ThemThuongHieuJFrame
      */
@@ -25,18 +29,48 @@ public class ThemThuongHieuJFrame extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Thêm Thương Hiệu");
+//        setupKeyListener();
 //         dtmThuocTinhSanPham = (DefaultTableModel) tbl_th.getModel();
+
+
     }
     
+//    private String capitalizeFirstLetter(String input) {
+//    String[] words = input.trim().split("\\s+");
+//    StringBuilder capitalizedText = new StringBuilder();
+//    for (String word : words) {
+//        if (word.length() > 0) {
+//            capitalizedText.append(word.substring(0, 1).toUpperCase())
+//                           .append(word.substring(1).toLowerCase())
+//                           .append(" ");
+//        }
+//    }
+//    return capitalizedText.toString().trim();
+//}
+//    private void setupKeyListener() {
+//    txt_TenThuongHieu.addKeyListener(new KeyAdapter() {
+//        @Override
+//        public void keyReleased(KeyEvent e) {
+//            String text = capitalizeFirstLetter(txt_TenThuongHieu.getText());
+//            txt_TenThuongHieu.setText(text);
+//        }
+//    });
+//}
+    
      private ThuocTinhSanPham getFormDataThuocTinhSP() {
+         String tenThuongHieu = txt_TenThuongHieu.getText().trim();
         if (txt_TenThuongHieu.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Bạn chưa nhập tên thuộc tính", "Lỗi Nhập Liệu", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+         if(repoThuongHieu.isThuongHieuExist(tenThuongHieu)){
+            JOptionPane.showMessageDialog(null, "Tên thuộc tính đã tồn tại", "Lỗi Nhập Liệu", JOptionPane.ERROR_MESSAGE);
             return null;
         }
 
         ThuocTinhSanPham ttsp = ThuocTinhSanPham.builder()
                 .maThuocTinhSanPham(txt_MaThuongHieu.getText())
-                .tenThuocTinhSanPham(txt_TenThuongHieu.getText())
+                .tenThuocTinhSanPham(txt_TenThuongHieu.getText().trim())
                 .build();
 
         return ttsp;

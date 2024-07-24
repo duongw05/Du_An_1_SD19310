@@ -5,7 +5,10 @@
 package com.Product.Service;
 
 import com.Product.Repository.ThuocTinhSanPhamRepository;
+import com.Product.Repository.TinhLinhHoatRepository;
 import com.Product.entity.ThuocTinhSanPham;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.JOptionPane;
@@ -18,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 public class ThemTinhLinhHoatJFrame extends javax.swing.JFrame {
         private DefaultTableModel dtmThuocTinhSanPham;
     private ThuocTinhSanPhamRepository thuocTinhSanPhamRepository = new ThuocTinhSanPhamRepository();
+    private TinhLinhHoatRepository repoTLH = new TinhLinhHoatRepository();
     /**
      * Creates new form ThemTinhLinhHoat
      */
@@ -25,11 +29,39 @@ public class ThemTinhLinhHoatJFrame extends javax.swing.JFrame {
         initComponents();
         setTitle("Thêm Phong Cách");
         setLocationRelativeTo(null);
+//        setupKeyListener();
     }
     
+//    private String capitalizeFirstLetter(String input) {
+//    String[] words = input.trim().split("\\s+");
+//    StringBuilder capitalizedText = new StringBuilder();
+//    for (String word : words) {
+//        if (word.length() > 0) {
+//            capitalizedText.append(word.substring(0, 1).toUpperCase())
+//                           .append(word.substring(1).toLowerCase())
+//                           .append(" ");
+//        }
+//    }
+//    return capitalizedText.toString().trim();
+//}
+//    private void setupKeyListener() {
+//    txt_TenPhongCach.addKeyListener(new KeyAdapter() {
+//        @Override
+//        public void keyReleased(KeyEvent e) {
+//            String text = capitalizeFirstLetter(txt_TenPhongCach.getText());
+//            txt_TenPhongCach.setText(text);
+//        }
+//    });
+//}
+    
      private ThuocTinhSanPham getFormDataThuocTinhSP() {
+         String tenPhongCach = txt_TenPhongCach.getText().trim();
         if (txt_TenPhongCach.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Bạn chưa nhập tên thuộc tính", "Lỗi Nhập Liệu", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+         if(repoTLH.isTinhLinhHoatExist(tenPhongCach)){
+            JOptionPane.showMessageDialog(null, "Tên thuộc tính đã tồn tại", "Lỗi Nhập Liệu", JOptionPane.ERROR_MESSAGE);
             return null;
         }
 

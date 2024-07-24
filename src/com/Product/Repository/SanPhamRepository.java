@@ -212,43 +212,44 @@ public class SanPhamRepository {
     }
 
     public ArrayList<SanPham> searchh(String searchString) {
-        // Cập nhật câu lệnh SQL để tìm kiếm theo các cột cần thiết
-        String sql = "SELECT sp.id, sp.ma_san_pham, sp.ten_san_pham, sp.mo_ta, "
-                + "COALESCE(SUM(spct.so_luong_ton), 0) AS so_luong, "
-                + "sp.trang_thai, sp.ngay_tao "
-                + "FROM SanPham sp "
-                + "LEFT JOIN SanPhamChiTiet spct ON sp.id = spct.id_san_pham "
-                + "WHERE sp.ma_san_pham LIKE ? OR sp.ten_san_pham LIKE ? OR sp.mo_ta LIKE ? "
-                + "GROUP BY sp.id, sp.ma_san_pham, sp.ten_san_pham, sp.mo_ta, sp.trang_thai, sp.ngay_tao";
+    // Cập nhật câu lệnh SQL để tìm kiếm theo các cột cần thiết
+    String sql = "SELECT sp.id, sp.ma_san_pham, sp.ten_san_pham, sp.mo_ta, "
+               + "COALESCE(SUM(spct.so_luong_ton), 0) AS so_luong, "
+               + "sp.trang_thai, sp.ngay_tao "
+               + "FROM SanPham sp "
+               + "LEFT JOIN SanPhamChiTiet spct ON sp.id = spct.id_san_pham "
+               + "WHERE sp.ma_san_pham LIKE ? OR sp.ten_san_pham LIKE ? OR sp.mo_ta LIKE ? "
+               + "GROUP BY sp.id, sp.ma_san_pham, sp.ten_san_pham, sp.mo_ta, sp.trang_thai, sp.ngay_tao";
 
-        ArrayList<SanPham> lists = new ArrayList<>();
-        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
-            String query = "%" + searchString + "%"; // Thêm % vào để tạo thành mô phỏng tìm kiếm
+    ArrayList<SanPham> lists = new ArrayList<>();
+    try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+        String query = "%" + searchString + "%"; // Thêm % vào để tạo thành mô phỏng tìm kiếm
 
-            // Đặt giá trị cho các tham số trong câu truy vấn SQL
-            ps.setString(1, query);
-            ps.setString(2, query);
-            ps.setString(3, query);
+        // Đặt giá trị cho các tham số trong câu truy vấn SQL
+        ps.setObject(1, query);
+        ps.setObject(2, query);
+        ps.setObject(3, query);
 
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                int id = rs.getInt("id");
-                String ma_san_pham = rs.getString("ma_san_pham");
-                String ten_san_pham = rs.getString("ten_san_pham");
-                String mo_ta = rs.getString("mo_ta");
-                int so_luong = rs.getInt("so_luong");
-                boolean trang_thai = rs.getBoolean("trang_thai");
-                Date ngay_tao = rs.getDate("ngay_tao");
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            int id = rs.getInt("id");
+            String ma_san_pham = rs.getString("ma_san_pham");
+            String ten_san_pham = rs.getString("ten_san_pham");
+            String mo_ta = rs.getString("mo_ta");
+            int so_luong = rs.getInt("so_luong");
+            boolean trang_thai = rs.getBoolean("trang_thai");
+            Date ngay_tao = rs.getDate("ngay_tao");
 
-                SanPham sanPham = new SanPham(id, ma_san_pham, ten_san_pham, mo_ta, so_luong, trang_thai, ngay_tao);
-                lists.add(sanPham);
-            }
-        } catch (Exception e) {
-            System.out.println("Error executing SQL query: " + e.getMessage());
-            e.printStackTrace(); // In ra stack trace để xem chi tiết lỗi
+            SanPham sanPham = new SanPham(id, ma_san_pham, ten_san_pham, mo_ta, so_luong, trang_thai, ngay_tao);
+            lists.add(sanPham);
         }
-        return lists;
+    } catch (Exception e) {
+        System.out.println("Error executing SQL query: " + e.getMessage());
+        e.printStackTrace(); // In ra stack trace để xem chi tiết lỗi
     }
+    return lists;
+}
+
 
     public ArrayList<SanPham> getSanPhamByTen(String tenSanPham) {
         ArrayList<SanPham> list = new ArrayList<>();
@@ -311,9 +312,9 @@ public class SanPhamRepository {
         }
         return check > 0;
     }
-    
-    private boolean updateTrangThai(SanPham sp){
-         int check = 0;
+
+    private boolean updateTrangThai(SanPham sp) {
+        int check = 0;
         String sql = "update SanPham\n"
                 + "set so_luong =?\n"
                 + "where id=?";
@@ -325,5 +326,19 @@ public class SanPhamRepository {
             e.printStackTrace(System.out);
         }
         return check > 0;
+    }
+
+    public boolean isSanPhamExist(String ten) {
+        String sql = "SELECT COUNT(*) FROM SanPham  WHERE ten_san_pham= ?";
+        try (Connection con = DBConnect.getConnection(); PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, ten);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

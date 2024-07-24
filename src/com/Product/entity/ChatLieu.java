@@ -20,9 +20,24 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ChatLieu {
-     private Integer id;
+     public Integer id;
 
     private String ma;
 
     private String ten;
+
+    @Override
+    public String toString() {
+        return ten;
+    }
+
+    public Integer getId() {
+     return id; }
+
+    public String getTen() {
+     return ten; }
+
+    
+    
+    
 }

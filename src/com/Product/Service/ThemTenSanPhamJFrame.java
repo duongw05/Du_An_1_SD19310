@@ -41,10 +41,16 @@ public class ThemTenSanPhamJFrame extends javax.swing.JFrame {
         
 
     }
-
+    
      private SanPham getFormDataSP() {
+         String tenSanPham = txtTenThuocTinh.getText().trim();
         if (txtTenThuocTinh.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Bạn chưa nhập tên thuộc tính", "Lỗi Nhập Liệu", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+        
+        if(sanPhamRepository.isSanPhamExist(tenSanPham)){
+            JOptionPane.showMessageDialog(null, "Tên thuộc tính đã tồn tại", "Lỗi Nhập Liệu", JOptionPane.ERROR_MESSAGE);
             return null;
         }
 

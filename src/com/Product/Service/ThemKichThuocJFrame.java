@@ -4,8 +4,11 @@
  */
 package com.Product.Service;
 
+import com.Product.Repository.KichThuocRepository;
 import com.Product.Repository.ThuocTinhSanPhamRepository;
 import com.Product.entity.ThuocTinhSanPham;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 import javax.swing.JOptionPane;
@@ -18,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 public class ThemKichThuocJFrame extends javax.swing.JFrame {
         private DefaultTableModel dtmThuocTinhSanPham;
     private ThuocTinhSanPhamRepository thuocTinhSanPhamRepository = new ThuocTinhSanPhamRepository();
+    private KichThuocRepository repoKichThuoc = new KichThuocRepository();
  
     /**
      * Creates new form ThemKichThuocJFrame
@@ -27,11 +31,28 @@ public class ThemKichThuocJFrame extends javax.swing.JFrame {
         setTitle("Thêm Kích Thước");
         setLocationRelativeTo(null);
         
+        
     }
     
+//    private void setupKeyListener() {
+//    txt_TenKichThuoc.addKeyListener(new KeyAdapter() {
+//        @Override
+//        public void keyReleased(KeyEvent e) {
+//            String text = txt_TenKichThuoc.getText().toUpperCase();
+//            txt_TenKichThuoc.setText(text);
+//        }
+//    });
+//}
+    
      private ThuocTinhSanPham getFormDataThuocTinhSP() {
+         String tenKichThuoc = txt_TenKichThuoc.getText().trim();
         if (txt_TenKichThuoc.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Bạn chưa nhập tên thuộc tính", "Lỗi Nhập Liệu", JOptionPane.ERROR_MESSAGE);
+            return null;
+        }
+        
+        if(repoKichThuoc.isKichThuocExist(tenKichThuoc)){
+            JOptionPane.showMessageDialog(null, "Tên thuộc tính đã tồn tại", "Lỗi Nhập Liệu", JOptionPane.ERROR_MESSAGE);
             return null;
         }
 
